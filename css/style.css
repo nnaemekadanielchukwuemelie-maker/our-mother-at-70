@@ -1707,6 +1707,130 @@ blockquote {
   color: var(--champagne);
 }
 
+/* ─── 12b. REASON MODAL (touch / tablet only) ─────────────── */
+/* Activated by JS on devices where (hover: none) is true.
+   Lets the visitor tap a small card and read the full reason
+   on a beautiful, full-size centred card. Click outside closes. */
+.reason-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-6);
+  background: rgba(10, 5, 22, 0);
+  backdrop-filter: blur(0px);
+  -webkit-backdrop-filter: blur(0px);
+  opacity: 0;
+  pointer-events: none;
+  transition: background 0.45s var(--ease-out),
+              backdrop-filter 0.45s var(--ease-out),
+              -webkit-backdrop-filter 0.45s var(--ease-out),
+              opacity 0.35s var(--ease-out);
+}
+.reason-modal[hidden] { display: none; }
+.reason-modal.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  background: rgba(10, 5, 22, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+.reason-modal__card {
+  position: relative;
+  width: min(92vw, 460px);
+  max-height: 80vh;
+  padding: clamp(2rem, 7vw, 3rem) clamp(1.5rem, 6vw, 2.5rem);
+  border-radius: var(--r-lg);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.22) 0%, transparent 70%),
+    linear-gradient(160deg, rgba(45,27,78,0.96), rgba(28,16,53,0.98));
+  border: 1px solid rgba(201,168,76,0.35);
+  box-shadow:
+    0 30px 80px rgba(0,0,0,0.55),
+    0 0 60px rgba(201,168,76,0.15),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+  overflow: auto;
+  transform: translateY(24px) scale(0.92);
+  opacity: 0;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.45s var(--ease-out);
+}
+.reason-modal.is-open .reason-modal__card {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+.reason-modal__card::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(var(--r-lg) - 4px);
+  border: 1px solid rgba(201,168,76,0.18);
+  pointer-events: none;
+}
+.reason-modal__num {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 16vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+  text-shadow: 0 4px 20px rgba(201,168,76,0.35);
+}
+.reason-modal__label {
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.65);
+  margin-top: calc(var(--sp-2) * -0.5);
+}
+.reason-modal__rule {
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent, rgba(201,168,76,0.6), transparent);
+  margin: var(--sp-1) 0;
+}
+.reason-modal__text {
+  font-family: var(--font-serif);
+  font-size: clamp(1.05rem, 4.2vw, 1.25rem);
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--champagne);
+  margin: 0;
+}
+.reason-modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.35);
+  border: 1px solid rgba(201,168,76,0.25);
+  border-radius: 50%;
+  color: var(--champagne);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+.reason-modal__close:hover,
+.reason-modal__close:focus-visible {
+  background: rgba(201,168,76,0.18);
+  transform: scale(1.08);
+  outline: none;
+}
+
 /* ─── 13. VIDEO SECTION ───────────────────────────────────── */
 .video-section {
   position: relative;

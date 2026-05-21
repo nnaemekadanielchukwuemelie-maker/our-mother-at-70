@@ -454,6 +454,72 @@ function initReasonsGrid() {
   // Detect touch so we can label cards 'Tap' instead of 'Hover'
   const isTouchDevice = window.matchMedia('(hover: none)').matches;
 
+  // On touch devices the tiny cards can't display the full reason, so we
+  // build a single shared modal that pops up the full card on tap and
+  // retracts on tap-away / close / Escape. Desktop keeps the hover-flip.
+  let reasonModal = null;
+  let lastFocusedCard = null;
+  if (isTouchDevice) {
+    reasonModal = document.createElement('div');
+    reasonModal.className = 'reason-modal';
+    reasonModal.setAttribute('role', 'dialog');
+    reasonModal.setAttribute('aria-modal', 'true');
+    reasonModal.setAttribute('aria-label', 'Reason we love you');
+    reasonModal.hidden = true;
+    reasonModal.innerHTML = `
+      <div class="reason-modal__card" role="document">
+        <button type="button" class="reason-modal__close" aria-label="Close">×</button>
+        <span class="reason-modal__num"></span>
+        <span class="reason-modal__label">Reason</span>
+        <span class="reason-modal__rule" aria-hidden="true"></span>
+        <p class="reason-modal__text"></p>
+      </div>
+    `;
+    document.body.appendChild(reasonModal);
+
+    const card    = reasonModal.querySelector('.reason-modal__card');
+    const numEl   = reasonModal.querySelector('.reason-modal__num');
+    const textEl  = reasonModal.querySelector('.reason-modal__text');
+    const closeBt = reasonModal.querySelector('.reason-modal__close');
+
+    const openModal = (num, text) => {
+      numEl.textContent  = num;
+      textEl.textContent = text;
+      reasonModal.hidden = false;
+      // Force a reflow so the transition runs from the hidden state
+      // eslint-disable-next-line no-unused-expressions
+      reasonModal.offsetWidth;
+      reasonModal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      closeBt.focus({ preventScroll: true });
+    };
+    const closeModal = () => {
+      if (!reasonModal.classList.contains('is-open')) return;
+      reasonModal.classList.remove('is-open');
+      document.body.style.overflow = '';
+      // wait for transition then fully hide
+      setTimeout(() => { reasonModal.hidden = true; }, 480);
+      if (lastFocusedCard) {
+        try { lastFocusedCard.focus({ preventScroll: true }); } catch (e) {}
+      }
+    };
+
+    // Click on backdrop (but not on the card) closes
+    reasonModal.addEventListener('click', (e) => {
+      if (e.target === reasonModal) closeModal();
+    });
+    closeBt.addEventListener('click', closeModal);
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && reasonModal.classList.contains('is-open')) {
+        closeModal();
+      }
+    });
+
+    // Expose to outer scope so card handlers can call it
+    reasonModal._open  = openModal;
+    reasonModal._close = closeModal;
+  }
+
   const fragment = document.createDocumentFragment();
 
   REASONS.forEach((reason, i) => {
@@ -493,14 +559,26 @@ function initReasonsGrid() {
     inner.appendChild(back);
     card.appendChild(inner);
 
-    // Click / tap toggles flip (essential for touch devices — CSS :hover doesn't fire)
-    card.addEventListener('click', () => card.classList.toggle('flipped'));
+    // Tap behaviour: touch devices open the full-size modal; desktop just flips.
+    card.addEventListener('click', () => {
+      if (isTouchDevice && reasonModal) {
+        lastFocusedCard = card;
+        reasonModal._open(num, reason);
+      } else {
+        card.classList.toggle('flipped');
+      }
+    });
 
-    // Keyboard: Space/Enter toggles flip
+    // Keyboard: Space/Enter activates (modal on touch, flip on desktop)
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        card.classList.toggle('flipped');
+        if (isTouchDevice && reasonModal) {
+          lastFocusedCard = card;
+          reasonModal._open(num, reason);
+        } else {
+          card.classList.toggle('flipped');
+        }
       }
     });
 
