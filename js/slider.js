@@ -174,16 +174,38 @@ class Lightbox {
   }
 }
 
-/* ─── 3. TRIBUTE MUSIC — Web Audio API Piano Composition ── */
-/* Tier 1: local MP3  ·  Tier 2: Web Audio synth "For You, Mummy" (C major, 66 BPM) */
+/* ─── 3. TRIBUTE MUSIC — Official YouTube + Web Audio piano fallback ── */
+/* Tier 1: YouTube IFrame (Dolly Parton — "Eagle When She Flies", official VEVO) */
+/* Tier 2: Web Audio synth "For You, Mummy" (C major, 66 BPM) — copyright-clean fallback */
 
-const TRIBUTE_MUSIC_FILE =
-  'assets/music/Dolly_Parton_-_Eagle_When_She_Flies256k.mp3';
+const TRIBUTE_YOUTUBE_ID = 'Mb1Rufxem_4'; // youtu.be/Mb1Rufxem_4 — DollyPartonVEVO official
+
+/* Lazy-loads the YouTube IFrame Player API exactly once. */
+let _ytApiPromise = null;
+function loadYouTubeIframeAPI() {
+  if (_ytApiPromise) return _ytApiPromise;
+  _ytApiPromise = new Promise((resolve, reject) => {
+    if (window.YT && window.YT.Player) { resolve(window.YT); return; }
+    const prevCb = window.onYouTubeIframeAPIReady;
+    window.onYouTubeIframeAPIReady = function () {
+      if (typeof prevCb === 'function') { try { prevCb(); } catch (e) {} }
+      resolve(window.YT);
+    };
+    const s = document.createElement('script');
+    s.src = 'https://www.youtube.com/iframe_api';
+    s.async = true;
+    s.onerror = () => reject(new Error('YouTube IFrame API failed to load'));
+    document.head.appendChild(s);
+    setTimeout(() => reject(new Error('YouTube IFrame API timeout')), 6000);
+  });
+  return _ytApiPromise;
+}
 
 class TributeMusic {
   constructor() {
-    this._mode       = null;   // 'file' | 'synth'
-    this._audioEl    = null;   // HTMLAudioElement when mode=file
+    this._mode       = null;   // 'youtube' | 'synth'
+    this._ytPlayer   = null;   // YT.Player instance when mode=youtube
+    this._ytHost     = null;   // hidden <div> host element for the iframe
     this._ctx        = null;
     this._master     = null;
     this._reverb     = null;
@@ -237,17 +259,49 @@ class TributeMusic {
   async start() {
     if (this._isPlaying) return;
 
-    /* ── Tier 1: try the local MP3 file ── */
+    /* ── Tier 1: official YouTube embed (real Dolly Parton song) ── */
     try {
-      const el  = new Audio(TRIBUTE_MUSIC_FILE);
-      el.loop   = true;
-      el.volume = this._isMuted ? 0 : 0.85;
-      await el.play();          // throws if file missing or autoplay blocked
-      this._audioEl   = el;
-      this._mode      = 'file';
+      const YT = await loadYouTubeIframeAPI();
+      const host = document.createElement('div');
+      host.setAttribute('aria-hidden', 'true');
+      host.style.cssText =
+        'position:fixed;left:-9999px;top:-9999px;width:1px;height:1px;' +
+        'opacity:0;pointer-events:none;overflow:hidden;';
+      document.body.appendChild(host);
+      const isMuted = this._isMuted;
+      const player = await new Promise((resolve, reject) => {
+        let settled = false;
+        const p = new YT.Player(host, {
+          width: '1', height: '1',
+          videoId: TRIBUTE_YOUTUBE_ID,
+          playerVars: {
+            autoplay: 1, controls: 0, modestbranding: 1, rel: 0,
+            playsinline: 1, fs: 0, disablekb: 1, iv_load_policy: 3,
+            loop: 1, playlist: TRIBUTE_YOUTUBE_ID,
+          },
+          events: {
+            onReady: () => { if (!settled) { settled = true; resolve(p); } },
+            onError: (e) => { if (!settled) { settled = true; reject(new Error('YT error ' + (e && e.data))); } },
+          },
+        });
+        setTimeout(() => { if (!settled) { settled = true; reject(new Error('YT ready timeout')); } }, 8000);
+      });
+      try { player.setVolume(isMuted ? 0 : 85); } catch (e) {}
+      if (isMuted) { try { player.mute(); } catch (e) {} }
+      try { player.playVideo(); } catch (e) {}
+      this._ytPlayer  = player;
+      this._ytHost    = host;
+      this._mode      = 'youtube';
       this._isPlaying = true;
       return;
-    } catch (_) { /* fall through */ }
+    } catch (_) {
+      /* network blocked, ad-blocker stripped the iframe, etc. — fall through */
+      if (this._ytHost && this._ytHost.parentNode) {
+        this._ytHost.parentNode.removeChild(this._ytHost);
+      }
+      this._ytPlayer = null;
+      this._ytHost   = null;
+    }
 
     /* ── Tier 2: Web Audio synth ── */
     this._mode = 'synth';
@@ -275,11 +329,15 @@ class TributeMusic {
   stop() {
     this._isPlaying = false;
     clearInterval(this._loopTimer);
-    if (this._audioEl) {
-      this._audioEl.pause();
-      this._audioEl.currentTime = 0;
-      this._audioEl = null;
+    if (this._ytPlayer) {
+      try { this._ytPlayer.stopVideo(); } catch (e) {}
+      try { this._ytPlayer.destroy(); } catch (e) {}
+      this._ytPlayer = null;
     }
+    if (this._ytHost && this._ytHost.parentNode) {
+      this._ytHost.parentNode.removeChild(this._ytHost);
+    }
+    this._ytHost = null;
     if (this._master && this._ctx) {
       const now = this._ctx.currentTime;
       this._master.gain.cancelScheduledValues(now);
@@ -294,8 +352,9 @@ class TributeMusic {
 
   setMuted(muted) {
     this._isMuted = muted;
-    if (this._audioEl) {
-      this._audioEl.volume = muted ? 0 : 0.85;
+    if (this._ytPlayer) {
+      try { muted ? this._ytPlayer.mute() : this._ytPlayer.unMute(); } catch (e) {}
+      try { this._ytPlayer.setVolume(muted ? 0 : 85); } catch (e) {}
     }
     if (this._master && this._ctx) {
       const now = this._ctx.currentTime;
