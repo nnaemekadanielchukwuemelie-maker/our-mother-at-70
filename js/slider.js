@@ -174,10 +174,13 @@ class Lightbox {
   }
 }
 
-/* ─── 3. TRIBUTE MUSIC — Official YouTube + Web Audio piano fallback ── */
-/* Tier 1: YouTube IFrame (Dolly Parton — "Eagle When She Flies", official VEVO) */
-/* Tier 2: Web Audio synth "For You, Mummy" (C major, 66 BPM) — copyright-clean fallback */
+/* ─── 3. TRIBUTE MUSIC — Local MP3 + YouTube backup + Web Audio piano ── */
+/* Tier 1: local MP3 (Dolly Parton — "Eagle When She Flies", the actual song) */
+/* Tier 2: YouTube IFrame embed of the same song (official VEVO) — used if mp3 missing/blocked */
+/* Tier 3: Web Audio synth "For You, Mummy" (C major, 66 BPM) — final fallback */
 
+const TRIBUTE_MUSIC_FILE =
+  'assets/music/Dolly_Parton_-_Eagle_When_She_Flies256k.mp3';
 const TRIBUTE_YOUTUBE_ID = 'Mb1Rufxem_4'; // youtu.be/Mb1Rufxem_4 — DollyPartonVEVO official
 
 /* Lazy-loads the YouTube IFrame Player API exactly once. */
@@ -203,7 +206,8 @@ function loadYouTubeIframeAPI() {
 
 class TributeMusic {
   constructor() {
-    this._mode       = null;   // 'youtube' | 'synth'
+    this._mode       = null;   // 'file' | 'youtube' | 'synth'
+    this._audioEl    = null;   // HTMLAudioElement when mode=file
     this._ytPlayer   = null;   // YT.Player instance when mode=youtube
     this._ytHost     = null;   // hidden <div> host element for the iframe
     this._ctx        = null;
@@ -259,7 +263,19 @@ class TributeMusic {
   async start() {
     if (this._isPlaying) return;
 
-    /* ── Tier 1: official YouTube embed (real Dolly Parton song) ── */
+    /* ── Tier 1: local MP3 (the actual song) ── */
+    try {
+      const el  = new Audio(TRIBUTE_MUSIC_FILE);
+      el.loop   = true;
+      el.volume = this._isMuted ? 0 : 0.85;
+      await el.play();          // rejects if file missing or autoplay blocked
+      this._audioEl   = el;
+      this._mode      = 'file';
+      this._isPlaying = true;
+      return;
+    } catch (_) { /* fall through to YouTube */ }
+
+    /* ── Tier 2: official YouTube embed of the same song ── */
     try {
       const YT = await loadYouTubeIframeAPI();
       const host = document.createElement('div');
@@ -303,7 +319,7 @@ class TributeMusic {
       this._ytHost   = null;
     }
 
-    /* ── Tier 2: Web Audio synth ── */
+    /* ── Tier 3: Web Audio synth ── */
     this._mode = 'synth';
     const AC = window.AudioContext || window.webkitAudioContext;
     if (!AC) return;
@@ -329,6 +345,11 @@ class TributeMusic {
   stop() {
     this._isPlaying = false;
     clearInterval(this._loopTimer);
+    if (this._audioEl) {
+      this._audioEl.pause();
+      this._audioEl.currentTime = 0;
+      this._audioEl = null;
+    }
     if (this._ytPlayer) {
       try { this._ytPlayer.stopVideo(); } catch (e) {}
       try { this._ytPlayer.destroy(); } catch (e) {}
@@ -352,6 +373,9 @@ class TributeMusic {
 
   setMuted(muted) {
     this._isMuted = muted;
+    if (this._audioEl) {
+      this._audioEl.volume = muted ? 0 : 0.85;
+    }
     if (this._ytPlayer) {
       try { muted ? this._ytPlayer.mute() : this._ytPlayer.unMute(); } catch (e) {}
       try { this._ytPlayer.setVolume(muted ? 0 : 85); } catch (e) {}
