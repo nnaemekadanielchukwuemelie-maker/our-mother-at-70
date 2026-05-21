@@ -1,0 +1,346 @@
+/* ════════════════════════════════════════════════════════════
+   animations.css — Our Mother at 70
+   Keyframes · Scroll-Reveal · Particle Effects · Pulse Glows
+   ════════════════════════════════════════════════════════════ */
+
+/* ─── 1. SCROLL-REVEAL INITIAL STATES ────────────────────── */
+/* Applied immediately; .visible class added by IntersectionObserver */
+
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(44px);
+  transition:
+    opacity   var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--delay, 0s);
+}
+
+.reveal-fade-left {
+  opacity: 0;
+  transform: translateX(-44px);
+  transition:
+    opacity   var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--delay, 0s);
+}
+
+.reveal-fade-right {
+  opacity: 0;
+  transform: translateX(44px);
+  transition:
+    opacity   var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+  transition-delay: var(--delay, 0s);
+}
+
+.reveal-stagger {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity   0.65s var(--ease-out) var(--delay, 0s),
+    transform 0.65s var(--ease-out) var(--delay, 0s);
+}
+
+/* Visible state — added by animations.js via IntersectionObserver */
+.reveal-fade-up.visible,
+.reveal-fade-left.visible,
+.reveal-fade-right.visible,
+.reveal-stagger.visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─── 2. KEYFRAMES ────────────────────────────────────────── */
+
+/* General fade in up */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero headline cascading reveal */
+@keyframes heroReveal {
+  from {
+    opacity: 0;
+    transform: translateY(60px) skewY(2deg);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) skewY(0deg);
+    filter: blur(0);
+  }
+}
+
+/* Scroll chevron bounce */
+@keyframes chevronBounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+/* Ambient orb drift */
+@keyframes orbDrift {
+  0%   { transform: translate(0,    0)    scale(1); }
+  33%  { transform: translate(30px, -20px) scale(1.05); }
+  66%  { transform: translate(-20px, 25px) scale(0.97); }
+  100% { transform: translate(10px,  -10px) scale(1.02); }
+}
+
+/* Play button ring pulse */
+@keyframes playRingPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+/* Gold glow breathe on elements */
+@keyframes goldGlowBreathe {
+  0%, 100% { box-shadow: 0 0 16px rgba(201, 168, 76, 0.2); }
+  50%      { box-shadow: 0 0 40px rgba(201, 168, 76, 0.5); }
+}
+
+/* Gradient border rotate */
+@keyframes gradientSpin {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+/* Timeline node pulse */
+@keyframes nodePulse {
+  0%, 100% {
+    box-shadow:
+      0 0 0 4px rgba(201, 168, 76, 0.15),
+      0 0 20px rgba(201, 168, 76, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 0 8px rgba(201, 168, 76, 0.05),
+      0 0 40px rgba(201, 168, 76, 0.5);
+  }
+}
+
+/* Countdown digit flip */
+@keyframes digitFlipDown {
+  0%   { transform: scaleY(1);    opacity: 1; }
+  50%  { transform: scaleY(0.85); opacity: 0.5; }
+  100% { transform: scaleY(1);    opacity: 1; }
+}
+
+/* Particle float */
+@keyframes particleFloat {
+  0%   { transform: translateY(0)    rotate(0deg);   opacity: 0.4; }
+  50%  { transform: translateY(-40px) rotate(180deg); opacity: 0.7; }
+  100% { transform: translateY(0)    rotate(360deg); opacity: 0.4; }
+}
+
+/* Scroll indicator fade up on load */
+@keyframes scrollIndicatorReveal {
+  from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+  to   { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+}
+
+/* Shimmer sweep (for loading skeletons / cards) */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Quote fade cross */
+@keyframes quoteFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero badge entrance */
+@keyframes badgePop {
+  0%   { transform: scale(0) rotate(-20deg); opacity: 0; }
+  70%  { transform: scale(1.1) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1)   rotate(0deg); opacity: 1; }
+}
+
+/* Portrait frame gentle float */
+@keyframes portraitFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+/* Reason card entrance */
+@keyframes reasonCardIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Footer signature drift */
+@keyframes sigDrift {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-3px); }
+}
+
+/* Memory card gentle wobble on hover settle */
+@keyframes cardSettle {
+  0%   { transform: rotate(var(--rotate, 0deg)) scale(1.03) translateY(-4px); }
+  50%  { transform: rotate(calc(var(--rotate, 0deg) * 0.5)) scale(1.04) translateY(-5px); }
+  100% { transform: rotate(0deg) scale(1.03) translateY(-4px); }
+}
+
+/* Glow line draw for story divider */
+@keyframes lineDraw {
+  from { width: 0; }
+  to   { width: 60px; }
+}
+
+/* ─── 3. APPLIED ANIMATION CLASSES ───────────────────────── */
+
+/* Hero badge pop animation — triggered once on load */
+.hero__portrait-badge {
+  animation: badgePop 0.8s 1.4s var(--ease-spring) both;
+}
+
+/* Portrait gentle float */
+.hero__portrait-frame {
+  animation: portraitFloat 8s ease-in-out infinite;
+}
+
+/* Active timeline node pulses */
+.timeline__node.active .timeline__node-ring {
+  animation: nodePulse 2.5s ease-in-out infinite;
+}
+
+/* Story divider draws in when visible */
+.story__divider.visible {
+  animation: lineDraw 0.8s var(--ease-out) both;
+}
+
+/* Scroll indicator reveal */
+.hero__scroll-indicator {
+  animation: scrollIndicatorReveal 1.2s 2.2s var(--ease-out) both;
+}
+
+/* Countdown units glow on load */
+.countdown__unit {
+  animation: goldGlowBreathe 4s ease-in-out infinite;
+}
+.countdown__unit:nth-child(2) { animation-delay: -1s; }
+.countdown__unit:nth-child(4) { animation-delay: -2s; }
+.countdown__unit:nth-child(6) { animation-delay: -3s; }
+
+/* Digit flip on number change */
+.countdown__num.flip {
+  animation: digitFlipDown 0.25s var(--ease-in-out) both;
+}
+
+/* Footer signatures drift */
+.footer__sig {
+  animation: sigDrift 4s ease-in-out infinite;
+}
+.footer__sig:nth-child(odd)  { animation-delay: -1s; }
+.footer__sig:nth-child(even) { animation-delay: -2s; }
+
+/* Play button continuous pulse ring */
+.video-frame__play-ring {
+  animation: playRingPulse 2.5s ease-in-out infinite;
+}
+
+/* Ambient quote-rotator background */
+.quote-rotator__ambient {
+  animation: orbDrift 30s ease-in-out infinite alternate;
+}
+
+/* ─── 4. PREFERS-REDUCED-MOTION OVERRIDE ─────────────────── */
+/* Respect user accessibility preferences */
+@media (prefers-reduced-motion: reduce) {
+  /* Disable all scroll-reveal initial transforms */
+  .reveal-fade-up,
+  .reveal-fade-left,
+  .reveal-fade-right,
+  .reveal-stagger {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  /* Disable looping animations */
+  .hero__portrait-frame,
+  .hero__portrait-badge,
+  .hero__scroll-indicator,
+  .hero__bg-orb,
+  .countdown__unit,
+  .footer__sig,
+  .video-frame__play-ring,
+  .tribute-film__play-ring,
+  .tribute-film__stage-img,
+  .quote-rotator__ambient,
+  .timeline__node.active .timeline__node-ring {
+    animation: none !important;
+  }
+
+  /* Disable Ken Burns in tribute film */
+  .tribute-film-modal__img { animation: none !important; }
+
+  /* Disable CSS transitions on interactive elements */
+  .tribute-card,
+  .timeline__card,
+  .gallery__photo,
+  .gallery__overlay,
+  .navbar__link::after,
+  .btn,
+  .reason-card__inner,
+  .memory-card {
+    transition: none !important;
+  }
+}
+
+/* ─── 5. KEN BURNS KEYFRAMES (Tribute Film) ──────────────── */
+/* Six pan-and-zoom variants cycle per slide, creating the     */
+/* classic documentary film effect.                            */
+
+@keyframes kb-1 {
+  from { transform: scale(1.00) translate( 0%,    0%); }
+  to   { transform: scale(1.18) translate(-4%,   -2%); }
+}
+@keyframes kb-2 {
+  from { transform: scale(1.18) translate(-4%,   -2%); }
+  to   { transform: scale(1.00) translate( 0%,    0%); }
+}
+@keyframes kb-3 {
+  from { transform: scale(1.00) translate( 2%,    0%); }
+  to   { transform: scale(1.15) translate(-2%,   -3%); }
+}
+@keyframes kb-4 {
+  from { transform: scale(1.12) translate(-2%,    2%); }
+  to   { transform: scale(1.20) translate( 3%,   -1%); }
+}
+@keyframes kb-5 {
+  from { transform: scale(1.00) translate( 0%,    3%); }
+  to   { transform: scale(1.16) translate(-1%,   -2%); }
+}
+@keyframes kb-6 {
+  from { transform: scale(1.18) translate( 3%,   -2%); }
+  to   { transform: scale(1.00) translate(-2%,    1%); }
+}
+
+/* Preview stage — continuous slow drift */
+@keyframes kb-stage {
+  0%   { transform: scale(1.00) translate(  0%,  0%); }
+  33%  { transform: scale(1.10) translate( -3%, -2%); }
+  66%  { transform: scale(1.06) translate(  2%, -1%); }
+  100% { transform: scale(1.12) translate( -1%,  2%); }
+}

@@ -1,0 +1,661 @@
+/* ════════════════════════════════════════════════════════════
+   responsive.css — Our Mother at 70
+   Breakpoints: 480px · 768px · 1024px · 1440px
+   Mobile-first adjustments — premium feel at every viewport
+   ════════════════════════════════════════════════════════════ */
+
+/* ─── 1. ULTRAWIDE (≥ 1440px) ─────────────────────────────── */
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1400px;
+  }
+
+  .hero__container {
+    gap: var(--sp-24);
+  }
+
+  .hero__headline {
+    font-size: 6rem;
+  }
+
+  .gallery__grid {
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 220px;
+  }
+
+  .reasons__grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .tributes__grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+/* ─── 2. LAPTOP (< 1280px) ────────────────────────────────── */
+@media (max-width: 1280px) {
+  .hero__container {
+    gap: var(--sp-12);
+  }
+
+  .story__container {
+    gap: var(--sp-12);
+  }
+}
+
+/* ─── 3. TABLET LANDSCAPE (< 1024px) ─────────────────────── */
+@media (max-width: 1024px) {
+  :root {
+    --sp-32: 6rem;
+    --sp-24: 5rem;
+  }
+
+  /* Navigation — show hamburger */
+  .navbar__hamburger {
+    display: flex;
+  }
+
+  /*
+   * CRITICAL FIX: Remove backdrop-filter from the navbar on mobile.
+   * When .navbar.scrolled has backdrop-filter active, CSS spec causes it to
+   * create a new containing block — which traps the position:fixed nav panel
+   * inside the navbar's painted area (a thin strip), making it invisible.
+   * A solid background achieves the same visual effect without the side-effect.
+   */
+  .navbar.scrolled {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(10, 6, 18, 0.97);
+  }
+
+  /* Scrim: dims the page content behind the open nav panel */
+  body.nav-open::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 140;
+    pointer-events: none;
+  }
+
+  .navbar__nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(320px, 80vw);
+    /* Fully opaque — does NOT rely on backdrop-filter to provide background */
+    background: #0A0612;
+    border-left: 1px solid rgba(201, 168, 76, 0.2);
+    padding: 6rem var(--sp-8) var(--sp-8);
+    transform: translateX(100%);
+    transition: transform var(--dur-mid) var(--ease-out);
+    /* High z-index — well above any section stacking contexts */
+    z-index: 150;
+    /* Force own compositing layer for smooth animation */
+    will-change: transform;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .navbar__nav.open {
+    transform: translateX(0);
+  }
+
+  .navbar__list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-6);
+  }
+
+  .navbar__link {
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    color: var(--champagne);
+  }
+
+  /* Hero — stack on smaller screens */
+  .hero__container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--sp-12);
+    padding-top: 7rem;
+    text-align: center;
+    min-height: auto;
+    padding-bottom: var(--sp-20);
+  }
+
+  .hero__content {
+    max-width: 100%;
+    order: 2;
+  }
+
+  .hero__actions {
+    justify-content: center;
+  }
+
+  .hero__portrait-wrap {
+    order: 1;
+  }
+
+  .hero__portrait-frame {
+    width: min(340px, 70vw);
+    margin-inline: auto;
+  }
+
+  .hero__portrait-badge {
+    right: calc(50% - 170px - 20px);
+  }
+
+  /* Story — stack */
+  .story__container {
+    grid-template-columns: 1fr;
+    gap: var(--sp-12);
+  }
+
+  .story__image-frame {
+    max-width: 360px;
+  }
+
+  .story__text {
+    padding-top: 0;
+  }
+
+  .story__quote-mark {
+    font-size: 140px;
+    top: -30px;
+    left: -10px;
+  }
+
+  /* Timeline — narrow gap */
+  .timeline__item {
+    grid-template-columns: 1fr 44px 1fr;
+  }
+
+  /* Gallery — 3 columns */
+  .gallery__grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 180px;
+  }
+
+  /* Reasons — more per row */
+  .reasons__grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  /* Tribute cards */
+  .tributes__grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+
+  /* Countdown */
+  .countdown__unit {
+    min-width: 100px;
+    padding: var(--sp-5) var(--sp-6);
+  }
+}
+
+/* ─── 4. TABLET PORTRAIT (< 768px) ───────────────────────── */
+@media (max-width: 768px) {
+  :root {
+    --sp-32: 5rem;
+    --sp-20: 4rem;
+    --sp-16: 3rem;
+  }
+
+  .container {
+    padding-inline: var(--sp-5);
+  }
+
+  /* Hide custom cursor on touch devices */
+  .cursor-glow,
+  .cursor-dot {
+    display: none;
+  }
+
+  /* Hero */
+  .hero__headline {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+  }
+
+  .hero__sub {
+    font-size: 0.95rem;
+  }
+
+  .hero__portrait-frame {
+    width: min(280px, 65vw);
+  }
+
+  .hero__portrait-badge {
+    width: 80px; height: 80px;
+    right: calc(50% - 140px - 16px);
+  }
+
+  .hero__badge-num {
+    font-size: 1.8rem;
+  }
+
+  /* Section headers */
+  .section-title {
+    font-size: clamp(2rem, 7vw, 3rem);
+  }
+
+  /* Timeline — single column */
+  .timeline__track {
+    max-width: 100%;
+  }
+
+  .timeline__item {
+    grid-template-columns: 1fr;
+    grid-template-areas: none !important;
+    margin-bottom: var(--sp-8);
+    padding-left: var(--sp-10);
+  }
+
+  .timeline__item--left .timeline__node,
+  .timeline__item--right .timeline__node {
+    grid-column: 1;
+    grid-row: 1;
+    position: absolute;
+    left: -var(--sp-5);
+    top: var(--sp-4);
+  }
+
+  .timeline__item--left .timeline__card,
+  .timeline__item--right .timeline__card {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  /* Single-column timeline layout (mobile) */
+  .timeline__track {
+    position: relative;
+    padding-left: var(--sp-8);
+  }
+
+  .timeline__line {
+    left: 10px;
+    transform: none;
+  }
+
+  .timeline__item {
+    display: block;
+    margin-left: var(--sp-8);
+    position: relative;
+  }
+
+  .timeline__node {
+    position: absolute;
+    left: calc(-1 * var(--sp-8) - 10px);
+    top: var(--sp-4);
+    padding-top: 0;
+  }
+
+  .timeline__card {
+    width: 100%;
+  }
+
+  /* Gallery — 2 columns */
+  .gallery__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 160px;
+  }
+
+  .gallery__item--large {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  /* Tribute cards */
+  .tributes__grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  /* Memory wall */
+  .memory-wall__grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  /* Memory cards — neutralise rotation on small screens */
+  .memory-card {
+    transform: rotate(0deg) !important;
+  }
+  .memory-card:hover {
+    transform: scale(1.02) translateY(-2px) !important;
+  }
+
+  /* Countdown */
+  .countdown__timer {
+    gap: var(--sp-2);
+  }
+
+  .countdown__unit {
+    min-width: 80px;
+    padding: var(--sp-4) var(--sp-5);
+  }
+
+  .countdown__num {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .countdown__sep {
+    font-size: 2rem;
+    padding-bottom: var(--sp-4);
+  }
+
+  /* Reasons grid */
+  .reasons__grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: var(--sp-2);
+  }
+
+  .reason-card {
+    height: 110px;
+  }
+
+  .reason-card__num {
+    font-size: 1.6rem;
+  }
+
+  /* Video frame */
+  .video-frame {
+    border-radius: var(--r-md);
+  }
+
+  /* Footer signatures */
+  .footer__signatures {
+    gap: var(--sp-3);
+  }
+
+  .footer__sig {
+    font-size: 1.1rem;
+  }
+
+  /* Lightbox navigation */
+  .lightbox__prev { left: var(--sp-3); }
+  .lightbox__next { right: var(--sp-3); }
+}
+
+/* ─── 5. MOBILE (< 480px) ─────────────────────────────────── */
+@media (max-width: 480px) {
+  :root {
+    --sp-32: 4rem;
+    --sp-20: 3rem;
+    --sp-16: 2.5rem;
+    --sp-12: 2.5rem;
+  }
+
+  .container {
+    padding-inline: var(--sp-4);
+  }
+
+  /* Navbar */
+  .navbar__brand-text {
+    font-size: 1rem;
+  }
+
+  /* Hero */
+  .hero__container {
+    padding-top: 6rem;
+    gap: var(--sp-8);
+  }
+
+  .hero__headline {
+    font-size: clamp(1.9rem, 10vw, 2.8rem);
+  }
+
+  .hero__portrait-frame {
+    width: min(240px, 75vw);
+  }
+
+  .hero__portrait-badge {
+    width: 68px; height: 68px;
+    right: calc(50% - 120px - 12px);
+    bottom: -14px;
+  }
+
+  .hero__badge-num {
+    font-size: 1.5rem;
+  }
+
+  .hero__badge-text {
+    font-size: 0.48rem;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  /* Section header */
+  .section-header {
+    margin-bottom: var(--sp-10);
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 9vw, 2.5rem);
+  }
+
+  /* Quote rotator */
+  .quote-item__text {
+    font-size: 1.15rem;
+  }
+
+  /* Story */
+  .story__image-frame {
+    max-width: 280px;
+  }
+
+  .story__headline {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  /* Gallery — single column on very small screens */
+  .gallery__grid {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 140px;
+  }
+
+  .gallery__item--large,
+  .gallery__item--tall {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  /* Tribute cards — full width */
+  .tributes__grid,
+  .tributes__grid--sm {
+    grid-template-columns: 1fr;
+  }
+
+  /* Memory wall */
+  .memory-wall__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Countdown — wrap to 2×2 */
+  .countdown__timer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-3);
+    max-width: 300px;
+    margin-inline: auto;
+  }
+
+  .countdown__sep {
+    display: none;
+  }
+
+  .countdown__unit {
+    min-width: unset;
+    width: 100%;
+    padding: var(--sp-4);
+  }
+
+  .countdown__num {
+    font-size: 2.2rem;
+  }
+
+  /* Reasons grid */
+  .reasons__grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--sp-2);
+  }
+
+  .reason-card {
+    height: 95px;
+  }
+
+  .reason-card__num {
+    font-size: 1.3rem;
+  }
+
+  .reason-card__text {
+    font-size: 0.7rem;
+  }
+
+  /* Footer */
+  .footer__headline {
+    font-size: 1.3rem;
+  }
+
+  .footer__sub {
+    font-size: 1.3rem;
+  }
+
+  /* Lightbox on mobile */
+  .lightbox__prev,
+  .lightbox__next {
+    width: 36px;
+    height: 36px;
+  }
+
+  .lightbox__img {
+    border-radius: var(--r-sm);
+  }
+
+  /* Video modal full screen */
+  .video-modal {
+    padding: 0;
+  }
+
+  .video-modal__content {
+    border-radius: 0;
+    max-width: 100%;
+    max-height: 60vh;
+  }
+  /* Tribute film stage — reduce aspect ratio on small screens */
+  .tribute-film__stage {
+    aspect-ratio: 4/3;
+  }
+
+  /* Tribute film controls — tighter */
+  .tribute-film-modal__controls {
+    gap: var(--sp-2);
+    padding-bottom: var(--sp-4);
+  }
+  .tribute-film-modal__ctrl { width: 40px; height: 40px; }
+  .tribute-film-modal__ctrl--pp { width: 48px; height: 48px; }
+
+  /* Counter — hide on very small screens */
+  .tribute-film-modal__counter { display: none; }
+}
+
+/* ─── 6. VERY SMALL (< 360px) ─────────────────────────────── */
+@media (max-width: 360px) {
+  .hero__headline {
+    font-size: 1.7rem;
+  }
+
+  .reasons__grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .countdown__num {
+    font-size: 1.8rem;
+  }
+}
+
+/* ─── 7. TOUCH / POINTER COARSE ──────────────────────────── */
+/* Enlarge tap targets on touch devices */
+@media (pointer: coarse) {
+  .navbar__link {
+    padding: var(--sp-2) 0;
+  }
+
+  .gallery__item {
+    /* Always show overlay on touch (no hover) */
+    cursor: default;
+  }
+
+  .gallery__overlay {
+    opacity: 0.4;
+  }
+
+  .tribute-card:hover {
+    transform: none;
+  }
+
+  .reason-card:hover .reason-card__inner {
+    transform: none;
+  }
+
+  /* Flip cards use tap (click) on touch — handled in main.js */
+
+  .lightbox__close,
+  .lightbox__prev,
+  .lightbox__next {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* ─── 8. PRINT ────────────────────────────────────────────── */
+@media print {
+  .navbar,
+  .scroll-progress,
+  .cursor-glow,
+  .cursor-dot,
+  .grain-overlay,
+  .hero__particles,
+  .footer__particles,
+  .lightbox,
+  .tribute-film-modal,
+  .video-modal {
+    display: none !important;
+  }
+
+  body {
+    background: white;
+    color: #1a1a1a;
+  }
+
+  .hero {
+    min-height: auto;
+    background: white;
+  }
+
+  .hero__headline,
+  .section-title,
+  .story__headline,
+  .tribute-card__quote {
+    color: #1a1a1a !important;
+  }
+
+  .hero__bg,
+  .story__texture,
+  .tributes__bg,
+  .timeline__bg,
+  .reasons__ambient,
+  .memory-wall__texture,
+  .countdown__ambient,
+  .tribute-film__ambient {
+    display: none !important;
+  }
+}

@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Celebrating 70 beautiful years of love, strength, and grace. A tribute to our beloved mother.">
+  <meta property="og:title" content="Our Mother at 70 — A Life Well Lived">
+  <meta property="og:description" content="A digital celebration of a life well lived.">
+  <title>Our Mother at 70 — A Life Well Lived</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600&family=Inter:wght@300;400;500&family=Dancing+Script:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- Grain texture overlay -->
+  <div class="grain-overlay" aria-hidden="true"></div>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Custom cursor -->
+  <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+
+  <!-- ═══════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════ -->
+  <header class="navbar" id="navbar" role="banner">
+    <div class="navbar__inner container">
+      <a href="#hero" class="navbar__brand" aria-label="Return to top">
+        <span class="navbar__brand-accent">♥</span>
+        <span class="navbar__brand-text">Our Mother at 70</span>
+      </a>
+
+      <button class="navbar__hamburger" id="navToggle"
+              aria-label="Open navigation menu"
+              aria-expanded="false"
+              aria-controls="navMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="navbar__nav" id="navMenu" role="navigation" aria-label="Main navigation">
+        <ul class="navbar__list" role="list">
+          <li><a href="#hero"      class="navbar__link">Home</a></li>
+          <li><a href="#story"     class="navbar__link">Her Story</a></li>
+          <li><a href="#gallery"   class="navbar__link">Gallery</a></li>
+          <li><a href="#tributes"  class="navbar__link">Tributes</a></li>
+          <li><a href="#timeline"  class="navbar__link">Timeline</a></li>
+          <li><a href="#memories"  class="navbar__link">Memories</a></li>
+          <li><a href="#reasons"   class="navbar__link">70 Reasons</a></li>
+          <li><a href="#countdown" class="navbar__link celebration-link">Countdown</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════════════
+         HERO
+    ═══════════════════════════════════════ -->
+    <section class="hero" id="hero" aria-label="70 Years of Love, Strength and Grace">
+
+      <!-- Background layer -->
+      <div class="hero__bg" aria-hidden="true">
+        <div class="hero__bg-image-wrap">
+          <!-- PLACEHOLDER: Drop your family photo at assets/images/hero-main.jpg -->
+          <img src="assets/images/1.jpeg"
+               alt=""
+               aria-hidden="true"
+               class="hero__bg-photo"
+               loading="eager">
+        </div>
+        <div class="hero__bg-gradient"></div>
+        <div class="hero__bg-orb hero__bg-orb--1"></div>
+        <div class="hero__bg-orb hero__bg-orb--2"></div>
+        <div class="hero__bg-orb hero__bg-orb--3"></div>
+      </div>
+
+      <!-- Floating particles canvas -->
+      <canvas class="hero__particles" id="heroParticles" aria-hidden="true"></canvas>
+
+      <div class="container hero__container">
+
+        <!-- Left: Editorial Text -->
+        <div class="hero__content reveal-fade-up">
+          <p class="hero__eyebrow">May 24, 2026 &nbsp;·&nbsp; Celebrating 70 Years</p>
+          <h1 class="hero__headline">
+            70 Years of<br>
+            <em>Love, Strength</em><br>
+            &amp; Grace
+          </h1>
+          <p class="hero__sub">
+            Celebrating the beautiful life of our mother —<br>
+            our foundation, our joy, and our greatest blessing.
+          </p>
+          <div class="hero__actions">
+            <a href="#story"    class="btn btn--primary">Her Story</a>
+            <a href="#tributes" class="btn btn--ghost">Family Tributes</a>
+          </div>
+        </div>
+
+        <!-- Right: Framed Portrait Composition -->
+        <div class="hero__portrait-wrap" aria-hidden="true">
+          <div class="hero__portrait-frame reveal-fade-left">
+            <div class="hero__portrait-inner">
+              <!-- PLACEHOLDER: Drop portrait at assets/images/mother-portrait.jpg -->
+              <img src="assets/images/1.jpeg"
+                   alt="Victoria Offodimma Chukwuemelie"
+                   class="hero__portrait-img img-placeholder"
+                   loading="eager">
+            </div>
+            <div class="hero__portrait-glow"></div>
+            <div class="hero__portrait-border"></div>
+          </div>
+          <div class="hero__portrait-badge" aria-label="70 Years of Love">
+            <span class="hero__badge-num">70</span>
+            <span class="hero__badge-text">Years<br>of Love</span>
+          </div>
+          <!-- Floating accent elements -->
+          <div class="hero__accent hero__accent--tl"></div>
+          <div class="hero__accent hero__accent--br"></div>
+        </div>
+
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="hero__scroll-indicator" aria-hidden="true">
+        <span class="hero__scroll-label">Scroll to Celebrate</span>
+        <div class="hero__scroll-chevron">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         QUOTE ROTATOR (interstitial)
+    ═══════════════════════════════════════ -->
+    <section class="quote-rotator" id="quotes" aria-label="Quotes about motherhood">
+      <div class="quote-rotator__ambient" aria-hidden="true"></div>
+      <div class="container">
+        <div class="quote-rotator__inner">
+          <div class="quote-rotator__track" id="quoteTrack"
+               aria-live="polite" aria-atomic="true">
+            <!-- Quotes injected by main.js -->
+          </div>
+          <div class="quote-rotator__dots" id="quoteDots"
+               role="tablist" aria-label="Quote navigation">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         HER STORY
+    ═══════════════════════════════════════ -->
+    <section class="story" id="story" aria-label="Her Story">
+      <div class="story__texture" aria-hidden="true"></div>
+      <div class="container story__container">
+
+        <!-- Left: Framed Portrait -->
+        <div class="story__image-wrap reveal-fade-right">
+          <div class="story__image-frame">
+            <!-- PLACEHOLDER: Drop portrait at assets/images/mother-portrait.jpg -->
+            <img src="assets/images/15.jpg"
+                 alt="Victoria Offodimma Chukwuemelie"
+                 class="story__image img-placeholder"
+                 loading="lazy">
+            <div class="story__image-inner-border" aria-hidden="true"></div>
+          </div>
+          <div class="story__image-caption">
+            <!-- PLACEHOLDER NAME: Replace with her real full name -->
+            <p class="story__image-name">Victoria Offodimma Chukwuemelie</p>
+            <p class="story__image-date">Born 1956 &nbsp;·&nbsp; Celebrating 70</p>
+          </div>
+        </div>
+
+        <!-- Right: Biography Text -->
+        <div class="story__text reveal-fade-left">
+          <div class="story__quote-mark" aria-hidden="true">&ldquo;</div>
+          <p class="story__eyebrow">A Life That Touched Generations</p>
+          <h2 class="story__headline">
+            A Woman of<br><em>Extraordinary Love</em>
+          </h2>
+          <div class="story__divider" aria-hidden="true"></div>
+
+          <!--
+            BIOGRAPHY TEXT: Replace all paragraphs below with her real story.
+            You can keep as many paragraphs as needed.
+          -->
+          <p class="story__body">
+            She came into this world in 1956, carrying with her a spirit that would go on to shape
+            generations. From her earliest years, she showed a grace and strength that few possess —
+            a quiet power that built homes, raised hearts, and left love in every room she entered.
+          </p>
+          <p class="story__body">
+            In 1980, she began a new chapter — a beautiful marriage that became the cornerstone of
+            a family that would grow to fill every season with laughter, faith, and togetherness.
+            Together they raised ten remarkable children, each one a testament to her endless
+            patience, boundless love, and unshakeable dedication.
+          </p>
+          <p class="story__body">
+            <!-- BIOGRAPHY TEXT: Add more of her personal story, faith, character, achievements -->
+            [Add more of her personal story here — her faith, her character, her achievements,
+            her favourite memories, the things that make her uniquely, beautifully her.]
+          </p>
+
+          <div class="story__signature" aria-hidden="true">
+            <!-- PLACEHOLDER SIGNATURE: Replace with her real full name -->
+            <span class="story__signature-text">Victoria Offodimma Chukwuemelie</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         TIMELINE
+    ═══════════════════════════════════════ -->
+    <section class="timeline" id="timeline" aria-label="Life Timeline">
+      <div class="timeline__bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <p class="section-eyebrow">Through the Years</p>
+          <h2 class="section-title">A Journey of<br><em>Beautiful Moments</em></h2>
+        </div>
+
+        <div class="timeline__track" role="list">
+          <div class="timeline__line" aria-hidden="true">
+            <div class="timeline__line-progress" id="timelineProgress"></div>
+          </div>
+
+          <!-- ── Node 1: 1956 ── -->
+          <article class="timeline__item timeline__item--left reveal-fade-right"
+                   role="listitem" data-timeline="0">
+            <div class="timeline__node" aria-label="1956 — Birth in Gabon">
+              <div class="timeline__node-ring" aria-hidden="true"></div>
+              <div class="timeline__node-core" aria-hidden="true"></div>
+            </div>
+            <div class="timeline__card">
+              <div class="timeline__card-year">1956</div>
+              <div class="timeline__card-image-wrap">
+                <img src="assets/images/a.jpeg"
+                     alt="Victoria's birthplace and early years"
+                     class="timeline__card-image img-placeholder"
+                     loading="lazy">
+              </div>
+              <div class="timeline__card-body">
+                <h3 class="timeline__card-title">Born with a Pen in Her Hand</h3>
+                <p class="timeline__card-text">
+                  On a remarkable day in 1956, Victoria Offodimma came into the world at a hospital
+                  in Port Gentil, Gabon. Her father — Papa — made the journey to that hospital
+                  carrying a pen. He opened her tiny newborn hand, placed the pen inside it, and
+                  gently folded her fingers around it. Nobody could explain how a baby only hours
+                  old held on to it — but she did.
+                </p>
+                <p class="timeline__card-text">
+                  Papa named her <em>Victoria</em> and <em>Ofodimma</em> — one name meaning victory,
+                  the other meaning purity. Two names that were not wishes but prophecies, spoken over
+                  a life that had barely begun. From her very first breath she bore the mark of her
+                  father: his complexion, his face, his relentless desire to do things right and do
+                  them well.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Node 2: 1960s–70s ── -->
+          <article class="timeline__item timeline__item--right reveal-fade-left"
+                   role="listitem" data-timeline="1">
+            <div class="timeline__node" aria-label="1960s–70s — Growing Up">
+              <div class="timeline__node-ring" aria-hidden="true"></div>
+              <div class="timeline__node-core" aria-hidden="true"></div>
+            </div>
+            <div class="timeline__card">
+              <div class="timeline__card-year">1960s – 70s</div>
+              <div class="timeline__card-image-wrap photo-collage photo-collage--2">
+                <img src="assets/images/30.png" alt="Young Victoria" class="photo-collage__img" loading="lazy">
+                <img src="assets/images/31.jpg" alt="Growing up" class="photo-collage__img" loading="lazy">
+              </div>
+              <div class="timeline__card-body">
+                <h3 class="timeline__card-title">A Daughter Like Papa</h3>
+                <p class="timeline__card-text">
+                  Growing up, Victoria was always two steps ahead. She did things right, she looked
+                  out for those behind her — especially her younger siblings — and she carried herself
+                  with a quiet authority that came not from demanding respect but from simply deserving
+                  it. She was, in every way, her father's daughter.
+                </p>
+                <p class="timeline__card-text">
+                  That pen Papa placed in her hand as a newborn was not merely symbolic — it was a
+                  calling. She fell in love with education early, and that love would never leave her.
+                  She approached learning the way she approached life: with seriousness, with grace,
+                  and with the belief that to do a thing well was to honour the people who came before you.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Node 3: 1980 ── -->
+          <article class="timeline__item timeline__item--left reveal-fade-right"
+                   role="listitem" data-timeline="2">
+            <div class="timeline__node" aria-label="1980 — Marriage">
+              <div class="timeline__node-ring" aria-hidden="true"></div>
+              <div class="timeline__node-core" aria-hidden="true"></div>
+            </div>
+            <div class="timeline__card">
+              <div class="timeline__card-year">1980</div>
+              <div class="timeline__card-image-wrap">
+                <img src="assets/images/10.jpeg"
+                     alt="Wedding 1980"
+                     class="timeline__card-image img-placeholder"
+                     loading="lazy">
+              </div>
+              <div class="timeline__card-body">
+                <h3 class="timeline__card-title">Marriage &amp; The Covenant</h3>
+                <p class="timeline__card-text">
+                  In 1980, Victoria said yes — and that yes became the foundation of everything.
+                  She entered into marriage as she entered everything: with her whole self. The
+                  covenant she made that year was not simply between two people; it was the beginning
+                  of a family, a legacy, and a love story that would take decades to fully tell.
+                </p>
+                <p class="timeline__card-text">
+                  Those who witnessed her in those early years of marriage saw the same Victoria they
+                  had always known — steady, devoted, and completely true. She built a home that was
+                  not just a house but a sanctuary: a place where faith was the first language, where
+                  the table was always set, and where no one ever left feeling unloved.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Node 4: Motherhood ── -->
+          <article class="timeline__item timeline__item--right reveal-fade-left"
+                   role="listitem" data-timeline="3">
+            <div class="timeline__node" aria-label="Motherhood — Ten Children">
+              <div class="timeline__node-ring" aria-hidden="true"></div>
+              <div class="timeline__node-core" aria-hidden="true"></div>
+            </div>
+            <div class="timeline__card">
+              <div class="timeline__card-year">1980s – 90s</div>
+              <div class="timeline__card-image-wrap photo-collage photo-collage--3">
+                <img src="assets/images/e.jpeg" alt="Mother and family" class="photo-collage__img" loading="lazy">
+                <img src="assets/images/8.jpeg" alt="Family together" class="photo-collage__img" loading="lazy">
+                <img src="assets/images/12.jpeg" alt="With her children" class="photo-collage__img" loading="lazy">
+              </div>
+              <div class="timeline__card-body">
+                <h3 class="timeline__card-title">Ten Gifts from Heaven</h3>
+                <p class="timeline__card-text">
+                  One by one, ten lives came into the world: Chibuzor, Ifeoma, Chukwuka, Ijeoma,
+                  Uchenna, Nnamdi, Chisom, Nkechi, Nnaemeka, and Chisimdi. Ten personalities, ten
+                  dreams, ten sets of needs — and not once did any of them feel like anything less
+                  than her only one.
+                </p>
+                <p class="timeline__card-text">
+                  She began to teach them to pray before they could pray on their own. She showed them
+                  God before the world showed them anything else. Her voice reading scripture in the
+                  early morning became one of the holiest sounds they would ever know. Her kitchen
+                  was never just about food — it was the place this family healed, reconnected,
+                  and always came home to.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Node 5: Education Career ── -->
+          <article class="timeline__item timeline__item--left reveal-fade-right"
+                   role="listitem" data-timeline="4">
+            <div class="timeline__node" aria-label="A Life in Education">
+              <div class="timeline__node-ring" aria-hidden="true"></div>
+              <div class="timeline__node-core" aria-hidden="true"></div>
+            </div>
+            <div class="timeline__card">
+              <div class="timeline__card-year">Career</div>
+              <div class="timeline__card-image-wrap photo-collage photo-collage--4">
+                <img src="assets/images/f.jpg" alt="A life in education" class="photo-collage__img" loading="lazy">
+                <img src="assets/images/4.jpeg" alt="Career portrait" class="photo-collage__img" loading="lazy">
+                <img src="assets/images/11.jpeg" alt="Service and dedication" class="photo-collage__img" loading="lazy">
+                <img src="assets/images/9.jpeg" alt="Legacy of learning" class="photo-collage__img" loading="lazy">
+              </div>
+              <div class="timeline__card-body">
+                <h3 class="timeline__card-title">A Life in Education</h3>
+                <p class="timeline__card-text">
+                  The pen Papa placed in her newborn hand made a promise, and Victoria Offodimma
+                  spent her career honouring it. She gave herself to education — not merely as a
+                  profession but as a vocation. She shaped young minds with the same intentionality
+                  and care she poured into her own children.
+                </p>
+                <p class="timeline__card-text">
+                  Colleagues and students alike saw a woman who showed up with excellence, who led
+                  by the same principle she lived by at home: do things right and do them well.
+                  Her name — Victoria — was never just a name. It was a prophecy she lived out
+                  in full, in every classroom, every corridor, every life she touched.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Node 6: Grandchildren ── -->
+          <article class="timeline__item timeline__item--right reveal-fade-left"
+                   role="listitem" data-timeline="5">
+            <div class="timeline__node" aria-label="The Season of Grandchildren">
+              <div class="timeline__node-ring" aria-hidden="true"></div>
+              <div class="timeline__node-core" aria-hidden="true"></div>
+            </div>
+            <div class="timeline__card">
+              <div class="timeline__card-year">2010s</div>
+              <div class="timeline__card-image-wrap photo-collage" data-collage="grandchildren">
+                <!-- Grandchild photos auto-populated from tribute cards by main.js
+                     Add a new grandchild tribute card above — it will appear here automatically -->
+              </div>
+              <div class="timeline__card-body">
+                <h3 class="timeline__card-title">The Season of Grandchildren</h3>
+                <p class="timeline__card-text">
+                  Then came the grandchildren — Shiloh, Blossom, Awesome, Paradise, Zoe,
+                  Chukwuekeka, Princess, Chukwuzikora, Angel, and Oluchi — and Victoria's
+                  love, rather than diminishing with the years, simply multiplied. Each grandchild
+                  ran to her exactly the way her children once had. That is not coincidence.
+                  That is character.
+                </p>
+                <p class="timeline__card-text">
+                  She made every grandchild feel like the centre of the universe. She told them
+                  stories. She prayed over them by name. She welcomed their parents as her own.
+                  Her home remained what it had always been: the warmest, most welcoming place
+                  in the world — a place where you arrive burdened and leave held.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <!-- ── Node 7: 2026 ── -->
+          <article class="timeline__item timeline__item--left reveal-fade-right"
+                   role="listitem" data-timeline="6">
+            <div class="timeline__node timeline__node--final" aria-label="2026 — Celebrating 70">
+              <div class="timeline__node-ring" aria-hidden="true"></div>
+              <div class="timeline__node-core" aria-hidden="true"></div>
+            </div>
+            <div class="timeline__card timeline__card--final">
+              <div class="timeline__card-year">2026</div>
+              <div class="timeline__card-image-wrap photo-collage" data-collage="glory">
+                <!-- Photos auto-populated from GLORY_IMAGES in main.js
+                     Add more paths to that array to expand this collage -->
+              </div>
+              <div class="timeline__card-body">
+                <h3 class="timeline__card-title">Seventy Years of Glory</h3>
+                <p class="timeline__card-text">
+                  Seventy years. Seven decades of love that never ran out, faith that never
+                  wavered, and a spirit that never stopped giving. From a hospital in Gabon
+                  where a father pressed a pen into a newborn hand — to this moment, surrounded
+                  by ten children, eleven grandchildren, in-laws, siblings, and a family that
+                  stands as testimony to everything she poured in.
+                </p>
+                <p class="timeline__card-text">
+                  Today we celebrate not just a birthday but a life. Victoria Offodimma
+                  Chukwuemelie — you are the finest thing this family has ever known.
+                  Happy 70th Birthday, Mummy. We love you beyond all words.
+                </p>
+              </div>
+            </div>
+          </article>
+
+        </div><!-- /.timeline__track -->
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         TRIBUTES
+    ═══════════════════════════════════════ -->
+    <section class="tributes" id="tributes" aria-label="Family Tributes">
+      <div class="tributes__bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <p class="section-eyebrow">Words From the Heart</p>
+          <h2 class="section-title">Family<br><em>Tributes</em></h2>
+          <p class="section-sub">The voices of those who love her most.</p>
+        </div>
+
+        <!-- ── Children ── -->
+        <div class="tributes__group">
+          <h3 class="tributes__group-label reveal-fade-up">From Her Children</h3>
+          <!--
+            CHILDREN TRIBUTES GRID — 10 slots pre-built.
+            Replace [Child N Name], relationship, and tribute message for each.
+            Portrait images go in assets/images/child-01.jpg through child-10.jpg
+          -->
+          <div class="tributes__marquee" data-marquee>
+          <div class="tributes__grid tributes__grid--marquee" id="childrenGrid">
+
+            <!-- CHILD 01 — Chibuzor & Gideon -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.05s" role="article"
+                     aria-label="Tribute from Chibuzor and Gideon">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/59.jpeg"
+                     alt="Chibuzor and Gideon"
+                     class="tribute-card__avatar img-placeholder"
+                     loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "A beautiful birthday wish to a mum like no other — my enenebe eje olu, my oyooo, a virtuous woman, one of the strongest women I know, the most beautiful, God's love, my hype person, my friend and jist partner.
+                  <br><br>
+                  You've always been there for me and my siblings, and now for my family. Words fail me to express how I feel about you, and on this special day, I want you to know that you are loved, cherished and appreciated — and God will keep you for us all to enjoy the fruit of your labour of love.
+                  <br><br>
+                  I love you, Mum. Happy 70th Birthday!!! 💃🏻💃🏻💃🏻🥰🥰🥰"
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Chibuzor &amp; Gideon</p>
+                  <p class="tribute-card__relation">First Born</p>
+                </footer>
+              </div>
+            </article>
+
+            <!-- CHILD 03 -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.15s" role="article"
+                     aria-label="Tribute from Chukwuka">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/54.jpeg"
+                     alt="Chukwuka and Amaka"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "Dear Mummy, Happy 70th Birthday. As your first son and third child, I have always had the best of both worlds — learning from my older sisters while trying to set an example for the younger ones.
+                  <br><br>
+                  Seventy years looks incredibly beautiful on you. Seven decades of strength, sacrifice, and love. Raising all of us is an absolute masterpiece.
+                  <br><br>
+                  Being your first son is an honour. Now, as a husband and father, I finally understand the weight and beauty of all you did. You taught me to lead by leading first. You showed me real love by loving without condition.
+                  <br><br>
+                  My greatest joy? Watching you pour that same love into your grandchildren — my 10-year-old daughter and my son turning 4 this September. They adore you, just as I always have.
+                  <br><br>
+                  Thank you for every prayer, every meal, every sleepless night. You are our steady heart. This family stands together, loves hard, and honours you always. You are our queen. Our first love. Our constant."
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Chukwuka &amp; Amaka</p>
+                  <p class="tribute-card__relation">Third Born · First Son</p>
+                </footer>
+              </div>
+            </article>
+
+            <!-- BELOVED SON — Pastor Isaiah & Grace -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.18s" role="article"
+                     aria-label="Tribute from Pastor Isaiah and Grace">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/66.jpeg"
+                     alt="Pastor Isaiah and Grace"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "Happy, happy, happy birthday to you, Mummy, on this your beautiful number @70. I and my family celebrate God's goodness, mercies and good health through all these good years — and I am thanking God ahead for 30 to 35 more years added to your age.
+                  <br><br>
+                  I pray for you today: with long life you are satisfied; more protection, good health, and a retentive memory are yours. And I declare — you will eat and enjoy the fruit 🍍🍎🍓🍇 of your labour, in Jesus' mighty name.
+                  <br><br>
+                  From your beloved son who loves you so much — Mummy, you know I love you. Happy birthday once again. Happy @70."
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Pst. Isaiah &amp; Grace Micah</p>
+                  <p class="tribute-card__relation">Beloved Son &amp; Family</p>
+                </footer>
+              </div>
+            </article>
+
+            <!-- CHILD 04 -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.20s" role="article"
+                     aria-label="Tribute from Ijeoma">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/21.jpeg"
+                     alt="Ijeoma and Obinna"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "Mummykins — the one who loved me even before I was born. The one who began to teach me how to pray before I learned on my own. The one who showed me God. The one who refused to give up on me even when I was stubborn. The one who deprived herself to see me well. The one who prayed and still prays for me. The one who loves my husband and son like her own.
+                  <br><br>
+                  Oh, how I love you, Mum! You are so selfless and sacrificial. I know everyone says their mum is the best, but you are truly the best.
+                  <br><br>
+                  Happy birthday, Mummykins. Thank you, Mama — for who you are, for being, for never changing, for loving the Lord, for walking in the footsteps of Jesus, and for showing us how to look to the Lord all the time. God bless you. Live long and prosper!"
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Ijeoma &amp; Obinna</p>
+                  <p class="tribute-card__relation">Fourth Born</p>
+                </footer>
+              </div>
+            </article>
+
+            <!-- CHILD 05 -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.25s" role="article"
+                     aria-label="Tribute from Uchenna and Cris">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/53.jpeg"
+                     alt="Uchenna and Cris"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "Happy Birthday, Mom!!! As you celebrate your 70th year on earth, may the Lord continue to grant you more years to enjoy His abundance.
+                  <br><br>
+                  As you have continued to serve the Lord, may He continue to bless your food and water and take sickness far away from you. May your life continue to show the goodness of God to our family and to the world.
+                  <br><br>
+                  May you be blessed in the morning and in the evening, blessed in the city and in the country, and may the joy of the Lord continue to be your strength all the days of your life.
+                  <br><br>
+                  Happy Birthday, Mom. We love you ❤️"
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Uche &amp; Cris</p>
+                  <p class="tribute-card__relation">Fifth Born</p>
+                </footer>
+              </div>
+            </article>
+
+            <!-- CHILD 06 — Nnamdi -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.30s" role="article"
+                     aria-label="Tribute from Nnamdi">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/65.jpeg"
+                     alt="Nnamdi"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "Today, I celebrate not just your age, but the incredible woman you are — a loving mother, a source of strength, wisdom, sacrifice, and endless care. Thank you for every word of prayer you prayed for me, every lesson you taught me, and every sacrifice you made to shape my life. Your love has been one of God's greatest blessings to our family.
+                  <br><br>
+                  At 70, your life is a beautiful testimony of grace, resilience, kindness, and faith. May God continue to bless you with good health, peace, joy, and many more beautiful years surrounded by love and happiness. May your days always be filled with laughter, honour, and the deep knowledge that you are cherished beyond words. May God's love lead you on towards eternal bliss in His bosom.
+                  <br><br>
+                  I love you so much, Mummy. Happy 70th Birthday!!! 🎂🌹🙏"
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Nnamdi</p>
+                  <p class="tribute-card__relation">Sixth Born</p>
+                </footer>
+              </div>
+            </article>
+
+            <!-- CHILD 07 — Chisom -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.35s" role="article"
+                     aria-label="Tribute from Chisom">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/51.jpeg"
+                     alt="Chisom"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "Happy 70th Birthday, Mummy 🌹❤️ — My Love ❤️🥰
+                  <br><br>
+                  I have been sitting with this for a while, trying to find the right words, and honestly, I am not sure any words are enough. But I have to try.
+                  <br><br>
+                  Mummy, you have always seen me. Not just the version of me that had it together, but the real me. The one who was scared, the one who was sick, the one who didn't know if she would make it. You sat with that version of me too. You cried when I couldn't, you prayed when I was too weak to, and you never once made me feel like I was too much. You always call me Eby, and somehow that was enough to remind me I was going to be okay.
+                  <br><br>
+                  I think about all the times I was sitting quietly by myself, lost in my own head, and you would walk in and just know. \"Are you okay? What's wrong?\" — before I even said a word. And then without fail, \"Have you eaten? What do you want to eat? Egg? Nutri-yo? Chicken, meat or liver?\" You always had options ready, because that is just how you love — practically, attentively, and with your whole self. You never waited to be asked. You just showed up.
+                  <br><br>
+                  You have been my advice, my comfort, my safe place on the days I felt completely alone. There is a grace on your life I still cannot fully explain — and it is not something you try to carry, it is just you. God has used you in my life in ways I am still uncovering, and I bless God every single day for giving me you as my mother.
+                  <br><br>
+                  Seventy years of that love. Seventy years of showing up, giving, praying, and never withholding. I am who I am because of you, Mummy — and I will never stop being grateful for that.
+                  <br><br>
+                  Here's to you. May this season pour back into you everything you have so freely given to all of us. Sound health and wholeness in body, soul and spirit. May you grow from strength to strength. Continue to grow fat and flourishing. You deserve every single good thing 🎂❤️🌹.
+                  <br><br>
+                  I love you so dearly, Mummy 😘🥰❤️🌹"
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Chisom</p>
+                  <p class="tribute-card__relation">Seventh Born · Your Eby</p>
+                </footer>
+              </div>
+            </article>
+
+            <!-- CHILD 08 -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.40s" role="article"
+                     aria-label="Tribute from Nkechi">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/20.jpeg"
+                     alt="Nkechi"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "Dear Mom, I may not remember everything from growing up, but the memories I have of you are the very best. I can always count on you to lift me when I am low and encourage me to keep giving it my best. Thank you for being my first teacher — I am still learning, and I love it.
+                  <br><br>
+                  I admire your optimism, your strength, and the grace you carry even in the odd times — when things are good and when they are hard, you are always the best mum anyone could wish for. Your sense of humour and sarcasm is truly unmatched, and I love you for it.
+                  <br><br>
+                  To the woman who sacrificed and endured so much for me and for all of us — I simply adore you. You are one of the best parts of my life and I am so proud to call you my mum.
+                  <br><br>
+                  If I am even half the woman you are, I will be grateful. No matter what I am going through, you always know how to make it better. You will continue to see glorious, fruitful and joyful days. I appreciate you more than you will ever know. You are blessed, and the peace of the Lord is your dwelling place. Happy birthday, Mom. I love you so much."
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Nkechi</p>
+                  <p class="tribute-card__relation">Eighth Born</p>
+                </footer>
+              </div>
+            </article>
+
+            <!-- CHILD 09 — Nnaemeka -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.45s" role="article"
+                     aria-label="Tribute from Nnaemeka">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/25.jpeg"
+                     alt="Nnaemeka"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "Happy 70th Birthday to my precious mother — my first home, my safe place, my greatest blessing, and one of the purest examples of God's grace I have ever seen.
+                  <br><br>
+                  Momsy the mommy, momisco la mommy the mommy — today, I do not just celebrate your age. I celebrate your life. I celebrate every battle you fought quietly, every tear you wiped away while still standing tall, every burden you carried without letting your children feel the weight, and every season when life tried to break you but could not. You have been through storms that would have finished many people, yet here you are — still standing, still loving, still praying, still believing, still shining. That is not ordinary strength. That is grace. That is faith. That is a woman held up by the hand of Jesus Christ.
+                  <br><br>
+                  Mom, as your last son, your 9th born, and your younger twin's brother, I have seen your love in ways words can never fully explain. I have seen your patience, your integrity, your discipline, your kindness, and the quiet way you carried our family with dignity. I have seen how deeply you love, how easily you forgive, how faithfully you trust God, and how your heart has remained soft even after life tried to harden it. Your life has taught me that true beauty is not in ease or comfort, but in resilience, character, and unwavering faith.
+                  <br><br>
+                  You are a woman who has lived the fruits of the Holy Spirit, not just spoken about them. Love. Joy. Peace. Patience. Kindness. Goodness. Faithfulness. Gentleness. Self-control. They are not just words around you — they are part of who you are. You have shown us what it means to be a mother, a believer, a fighter, and a servant of God all at once.
+                  <br><br>
+                  There are so many things I wish I could say to you face to face without crying. Thank you for every sacrifice I did not understand when I was younger. Thank you for the prayers you prayed over my life when I did not know how much I needed them. Thank you for the nights you stayed awake, the strength you found when you were tired, and the love you kept giving even when you had every reason to pause. Thank you for being the kind of mother that leaves marks on the soul — the kind that shapes a child's life forever.
+                  <br><br>
+                  At 70, you are not fading. You are becoming even more beautiful to me, because now I can see your life for what it truly is: a testimony. A testimony of survival. A testimony of faith. A testimony that God really does keep those who trust Him. You have not only raised children; you have raised them with prayer, with wisdom, with moral strength, and with a heart rooted in Christ.
+                  <br><br>
+                  I pray that this new chapter brings you peace, health, joy, laughter, and more years of strength. May the Lord reward every hidden sacrifice, every silent tear, every act of love, and every prayer you lifted for us. May He preserve you in good health and surround you with honour, comfort, and so much joy that your heart overflows.
+                  <br><br>
+                  Happy 70th birthday, my beautiful mother. I love you more than words can say. I am forever proud to be your son. And if I had to choose a mother again, I would still choose you every single time.
+                  <br><br>
+                  You are a rare gift. You are deeply loved. You are cherished beyond measure. And your life will continue to speak long after the candles are gone.
+                  <br><br>
+                  With all my love, Nnaemeka."
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Nnaemeka</p>
+                  <p class="tribute-card__relation">Ninth Born</p>
+                </footer>
+              </div>
+            </article>
+
+            <!-- CHILD 10 -->
+            <article class="tribute-card reveal-stagger" style="--delay:0.50s" role="article"
+                     aria-label="Tribute from Chisimdi">
+              <div class="tribute-card__avatar-wrap">
+                <img src="assets/images/24.jpeg"
+                     alt="Chisimdi"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "Happy 70th Birthday, Mummy. Words will never truly be enough to express how grateful I am to have you as my mother, but today I want you to know just how deeply loved, cherished, and appreciated you are.
+                  <br><br>
+                  You have been my first home, my first teacher, my greatest comfort, my first love, and one of the strongest people I know. Through every season of life you have carried our family with grace, wisdom, sacrifice, and unconditional love. You gave so much of yourself so that we could become who we are today. Your strength has held us together, your prayers have covered us, and your love has shaped our lives in more ways than you may ever realise.
+                  <br><br>
+                  Thank you for every sleepless night, every prayer whispered on our behalf, every encouraging word, every lesson, every hug, every sacrifice, and every act of love that often went unnoticed. Thank you for always putting us first, even when it was not easy. Thank you for being our safe place and our guiding light.
+                  <br><br>
+                  I pray that this new chapter of your life will be filled with peace, joy, good health, laughter, and endless love. May God continue to strengthen you, protect you, and bless you abundantly. You deserve to be celebrated today and always, because a woman like you is rare and precious.
+                  <br><br>
+                  I love you more than words can ever explain, Mummy. Thank you for being you. Thank you for being my mother."
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Chisimdi</p>
+                  <p class="tribute-card__relation">Last Born</p>
+                </footer>
+              </div>
+            </article>
+
+          </div><!-- /.tributes__grid childrenGrid -->
+          </div><!-- /.tributes__marquee -->
+        </div><!-- /.tributes__group children -->
+
+        <!-- ── Grandchildren ── -->
+        <div class="tributes__group">
+          <h3 class="tributes__group-label reveal-fade-up">From Her Grandchildren</h3>
+          <!--
+            GRANDCHILDREN GRID — dynamic, auto-expands for any number.
+            Layout: repeat(auto-fill, minmax(280px, 1fr))
+            Copy the article block and increment gc-NN to add more grandchildren.
+            Portrait images: assets/images/grandchild-01.jpg, grandchild-02.jpg, etc.
+          -->
+          <div class="tributes__marquee tributes__marquee--reverse" data-marquee>
+          <div class="tributes__grid tributes__grid--sm tributes__grid--marquee" id="grandchildrenGrid">
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.05s" role="article">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/63.jpeg" alt="Shiloh"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">"Happy birthday to you, Grandma. You are the best grandma in the world. May God protect you and bless you, in Jesus' name, amen 🙏."</blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Shiloh</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.10s" role="article"
+                     aria-label="A letter from Blossom to her grandmother">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/58.jpeg" alt="Blossom"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <div class="hearted-quote">
+                  <span class="hearted-quote__side hearted-quote__side--left" aria-hidden="true">&#10084;&#65039;<br>&#10084;&#65039;<br>&#10084;&#65039;<br>&#10084;&#65039;<br>&#10084;&#65039;<br>&#10084;&#65039;</span>
+                  <span class="hearted-quote__side hearted-quote__side--right" aria-hidden="true">&#10084;&#65039;<br>&#10084;&#65039;<br>&#10084;&#65039;<br>&#10084;&#65039;<br>&#10084;&#65039;<br>&#10084;&#65039;</span>
+                  <blockquote class="tribute-card__quote tribute-card__quote--hearted">
+                    <span class="hearted-quote__title">A Letter to my Grandma</span>
+                    <br><br>
+                    We love you so much &mdash; but I love you more and more.
+                    <br><br>
+                    Happy Birthday to you!!! I love &#10084;&#65039; you so much. You are the best grandmother ever. Today, 24th of May, your birthday will be a favourable day. You shall live long, you shall see your children&rsquo;s children&rsquo;s children&rsquo;s children. And you shall live a prosperous life.
+                    <br><br>
+                    Nothing will harm you, because today, 24th May, you are putting on the armour of God. Therefore nothing can come your way. You are Blessed, my lovely grandma.
+                    <br><br>
+                    Today shall be your best day ever ooo!!!
+                    <br><br>
+                    Thank you for taking good care of me and your family &mdash; God will bless you.
+                    <br><br>
+                    You shall be rich as you live your life, in JESUS NAME, AMEN!!!!!!!!!!!
+                  </blockquote>
+                </div>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Blossom</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.15s" role="article">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/64.jpeg" alt="Awesome"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">"Happy birthday to you, Grandma. May the Lord bless you more and more, and prosper you, in Jesus' name, amen."</blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Awesome</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.20s" role="article">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/56.jpeg" alt="Paradise"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">"Being your grandchild is the greatest gift I have ever been given. Happy 70th!"</blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Paradise</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.25s" role="article">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/61.jpeg" alt="Zoe"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">"Happy birthday to you. You shall be blessed, and you shall have more wisdom. You are a blessing to this family. You will live long and not die. God will add a big blessing to you today as you celebrate your birthday, in Jesus' name, amen 🎂🎁💕"</blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Zoe</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.30s" role="article">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/22.jpeg" alt="Chukwuekeka"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">"Happy birthday, Grandmama. I love you."</blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Chukwuekeka</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.35s" role="article">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/62.jpeg" alt="Princess"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">"I love you so much, Grandma. ❤️🥰"</blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Princess</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.45s" role="article">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/55.jpeg" alt="Chukwuzikora"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">"Grandma, God knew exactly what He was doing when He made you ours."</blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Chukwuzikora</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.50s" role="article">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/57.jpeg" alt="Angel"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">"Happy birthday, Grandma 🎁"</blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Angel</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+            <article class="tribute-card tribute-card--compact reveal-stagger" style="--delay:0.55s" role="article">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/23.jpeg" alt="Oluchi"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">"Happy birthday, Grandma. Thank you for loving me and teaching me in your own way. I wish you many more fruitful years."</blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Oluchi</p>
+                  <p class="tribute-card__relation">Grandchild</p>
+                </footer>
+              </div>
+            </article>
+
+          </div><!-- /.tributes__grid grandchildrenGrid -->
+          </div><!-- /.tributes__marquee grandchildren -->
+        </div><!-- /.tributes__group grandchildren -->
+
+        <!-- ── Siblings ── -->
+        <div class="tributes__group">
+          <h3 class="tributes__group-label reveal-fade-up">From Her Siblings</h3>
+          <div class="tributes__marquee" data-marquee>
+          <div class="tributes__grid tributes__grid--sm tributes__grid--marquee" id="siblingsGrid">
+
+            <article class="tribute-card tribute-card--compact reveal-stagger"
+                     style="--delay:0.05s" role="article"
+                     aria-label="Tribute from Job Otutubuike">
+              <div class="tribute-card__avatar-wrap tribute-card__avatar-wrap--sm">
+                <img src="assets/images/50.jpeg" alt="Job Otutubuike"
+                     class="tribute-card__avatar img-placeholder" loading="lazy">
+              </div>
+              <div class="tribute-card__body">
+                <blockquote class="tribute-card__quote">
+                  "I feel privileged to speak about you, Vicky, as you hit the 7th floor of life. I always loved you the way a junior brother loves and admires his older sister — one that was always two steps ahead, always did things right, and always looked out for her younger brother.
+                  <br><br>
+                  You are the one who looks most like Papa — not just in complexion and facial resemblance, but also in your desire, at any time, to get things done well and done right. We all saw how Papa kept a special place in his heart for you, calling you &ldquo;Victoria&rdquo; and &ldquo;Ofodimma&rdquo; — two names that reflect victory and purity. We loved that.
+                  <br><br>
+                  It is said that on the day you were born, Papa came to the hospital in Port Gentil, Gabon with a pen. He opened your right hand, placed that pen in it, and gently folded it back. We do not know how you held on to that pen when you were barely a few hours old — but you did. No wonder you have loved education ever since and made a career in it and of it.
+                  <br><br>
+                  As you turn 70 today, I celebrate you with so much gladness. May God grant you peace, joy, divine health, and length of years. May He surround you with those who genuinely love and care for you. May He celebrate you from heaven and fill your years with fulfilment and laughter. May He secure your soul in Him always. Happy 70th Birthday. Bless your righteous soul!"
+                </blockquote>
+                <footer class="tribute-card__footer">
+                  <p class="tribute-card__name">Job Otutubuike</p>
+                  <p class="tribute-card__relation">Brother</p>
+                </footer>
+              </div>
+            </article>
+
+          </div><!-- /.tributes__grid siblingsGrid -->
+          </div><!-- /.tributes__marquee siblings -->
+        </div><!-- /.tributes__group siblings -->
+
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         GALLERY
+    ═══════════════════════════════════════ -->
+    <section class="gallery" id="gallery" aria-label="Family Photo Gallery">
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <p class="section-eyebrow">Captured Moments</p>
+          <h2 class="section-title">Family<br><em>Gallery</em></h2>
+          <p class="section-sub">Click any photo to view full size.</p>
+        </div>
+
+        <!--
+          GALLERY: Drop real photos into assets/images/gallery-1.jpg through gallery-12.jpg
+          Update alt text and captions when real photos are added.
+          Add more <figure> blocks for additional photos — the grid auto-expands.
+        -->
+        <div class="gallery__grid" id="galleryGrid" role="list">
+
+          <figure class="gallery__item gallery__item--large reveal-stagger"
+                  style="--delay:0.05s" role="listitem" data-index="0">
+            <img data-src="assets/images/5.jpeg"
+                 src="assets/images/5.jpeg"
+                 alt="Victoria Offodimma Chukwuemelie"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">A Life Well Lived</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item reveal-stagger"
+                  style="--delay:0.10s" role="listitem" data-index="1">
+            <img data-src="assets/images/6.jpeg"
+                 src="assets/images/6.jpeg"
+                 alt="A cherished family moment"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Our Heart, Our Home</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item gallery__item--tall reveal-stagger"
+                  style="--delay:0.15s" role="listitem" data-index="2">
+            <img data-src="assets/images/b.jpeg"
+                 src="assets/images/b.jpeg"
+                 alt="Victoria, timeless grace"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Timeless Grace</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item reveal-stagger"
+                  style="--delay:0.20s" role="listitem" data-index="3">
+            <img data-src="assets/images/PHOTO-2026-05-12-14-38-06.jpg"
+                 src="assets/images/PHOTO-2026-05-12-14-38-06.jpg"
+                 alt="Family together"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Family Portrait</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item gallery__item--large reveal-stagger"
+                  style="--delay:0.25s" role="listitem" data-index="4">
+            <img data-src="assets/images/PHOTO-2026-05-12-14-38-06_1.jpg"
+                 src="assets/images/PHOTO-2026-05-12-14-38-06_1.jpg"
+                 alt="Surrounded by love"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Surrounded by Love</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item reveal-stagger"
+                  style="--delay:0.30s" role="listitem" data-index="5">
+            <img data-src="assets/images/PHOTO-2026-05-12-14-38-07_1.jpg"
+                 src="assets/images/PHOTO-2026-05-12-14-38-07_1.jpg"
+                 alt="Captured with love"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Captured with Love</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item gallery__item--tall reveal-stagger"
+                  style="--delay:0.35s" role="listitem" data-index="6">
+            <img data-src="assets/images/PHOTO-2026-05-12-14-38-07_2.jpg"
+                 src="assets/images/PHOTO-2026-05-12-14-38-07_2.jpg"
+                 alt="Seventy years of glory"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Seventy Years of Glory</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item reveal-stagger"
+                  style="--delay:0.40s" role="listitem" data-index="7">
+            <img data-src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.32.jpeg"
+                 src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.32.jpeg"
+                 alt="A family memory"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">A Family Memory</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item gallery__item--large reveal-stagger"
+                  style="--delay:0.45s" role="listitem" data-index="8">
+            <img data-src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.33.jpeg"
+                 src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.33.jpeg"
+                 alt="The heart of our home"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">The Heart of Our Home</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item reveal-stagger"
+                  style="--delay:0.50s" role="listitem" data-index="9">
+            <img data-src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.34.jpeg"
+                 src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.34.jpeg"
+                 alt="Memories that last forever"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Memories That Last Forever</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item gallery__item--tall reveal-stagger"
+                  style="--delay:0.55s" role="listitem" data-index="10">
+            <img data-src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.35%20%281%29.jpeg"
+                 src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.35%20%281%29.jpeg"
+                 alt="Victoria, our lighthouse"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Victoria, Our Lighthouse</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item reveal-stagger"
+                  style="--delay:0.60s" role="listitem" data-index="11">
+            <img data-src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.35.jpeg"
+                 src="assets/images/WhatsApp%20Image%202026-05-12%20at%2013.20.35.jpeg"
+                 alt="Love multiplied"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Love Multiplied</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item reveal-stagger"
+                  style="--delay:0.65s" role="listitem" data-index="12">
+            <img data-src="assets/images/50.jpeg"
+                 src="assets/images/50.jpeg"
+                 alt="A cherished moment"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Cherished Moments</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item gallery__item--tall reveal-stagger"
+                  style="--delay:0.75s" role="listitem" data-index="14">
+            <img data-src="assets/images/52.jpeg"
+                 src="assets/images/52.jpeg"
+                 alt="Generations of love"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Generations of Love</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item reveal-stagger"
+                  style="--delay:0.80s" role="listitem" data-index="15">
+            <img data-src="assets/images/60.jpeg"
+                 src="assets/images/60.jpeg"
+                 alt="A treasured smile"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">A Treasured Smile</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+          <figure class="gallery__item reveal-stagger"
+                  style="--delay:0.85s" role="listitem" data-index="16">
+            <img data-src="assets/images/a.jpeg"
+                 src="assets/images/a.jpeg"
+                 alt="Mum, ever radiant"
+                 class="gallery__photo lazy" loading="lazy">
+            <figcaption class="gallery__caption">Ever Radiant</figcaption>
+            <div class="gallery__overlay" aria-hidden="true">
+              <svg class="gallery__expand-icon" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/>
+              </svg>
+            </div>
+          </figure>
+
+        </div><!-- /.gallery__grid -->
+      </div>
+
+      <!-- Lightbox Modal -->
+      <div class="lightbox" id="lightbox"
+           role="dialog" aria-modal="true"
+           aria-label="Photo viewer" hidden>
+        <div class="lightbox__backdrop" id="lightboxBackdrop"></div>
+        <button class="lightbox__close" id="lightboxClose" aria-label="Close photo viewer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 6L6 18M6 6l12 12"/>
+          </svg>
+        </button>
+        <button class="lightbox__prev" id="lightboxPrev" aria-label="Previous photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M15 18l-6-6 6-6"/>
+          </svg>
+        </button>
+        <button class="lightbox__next" id="lightboxNext" aria-label="Next photo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </button>
+        <div class="lightbox__content">
+          <img class="lightbox__img" id="lightboxImg" src="" alt="">
+          <p class="lightbox__caption" id="lightboxCaption"></p>
+        </div>
+        <div class="lightbox__counter" id="lightboxCounter" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         70 REASONS WE LOVE YOU
+    ═══════════════════════════════════════ -->
+    <section class="reasons" id="reasons" aria-label="70 Reasons We Love You">
+      <div class="reasons__ambient" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <p class="section-eyebrow">From the Heart</p>
+          <h2 class="section-title">70 Reasons<br><em>We Love You</em></h2>
+          <p class="section-sub">Hover or tap each card to reveal the reason.</p>
+        </div>
+        <!--
+          REASONS: The 70 cards are generated by main.js from the REASONS array.
+          To update the reasons, open js/main.js and edit the REASONS array.
+          Each reason is a string — just replace the placeholder text.
+        -->
+        <div class="reasons__grid" id="reasonsGrid" role="list"
+             aria-label="70 reasons we love you"></div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         A TRIBUTE IN MOTION
+    ═══════════════════════════════════════ -->
+    <section class="tribute-film" id="video" aria-label="A Tribute in Motion">
+      <div class="tribute-film__ambient" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <p class="section-eyebrow">Her Life in Pictures</p>
+          <h2 class="section-title">A Tribute<br><em>in Motion</em></h2>
+          <p class="section-sub">Seventy years of love, light, and laughter — set to music.</p>
+        </div>
+
+        <!-- Preview Stage -->
+        <div class="tribute-film__stage reveal-fade-up">
+          <div class="tribute-film__stage-bg" aria-hidden="true">
+            <img src="assets/images/1.jpeg" alt=""
+                 class="tribute-film__stage-img" aria-hidden="true">
+            <div class="tribute-film__stage-vignette" aria-hidden="true"></div>
+          </div>
+          <div class="tribute-film__stage-text" aria-hidden="true">
+            <p class="tribute-film__stage-title">Victoria Offodimma Chukwuemelie</p>
+            <p class="tribute-film__stage-sub">70 Years &nbsp;·&nbsp; Her Photographs &nbsp;·&nbsp; One Extraordinary Life</p>
+          </div>
+          <button class="tribute-film__play-btn" id="tributeFilmPlayBtn"
+                  aria-label="Open A Tribute in Motion full-screen cinematic slideshow">
+            <div class="tribute-film__play-ring" aria-hidden="true"></div>
+            <div class="tribute-film__play-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+            <span class="tribute-film__play-label">Play the Film</span>
+          </button>
+          <div class="tribute-film__corner tribute-film__corner--tl" aria-hidden="true"></div>
+          <div class="tribute-film__corner tribute-film__corner--tr" aria-hidden="true"></div>
+          <div class="tribute-film__corner tribute-film__corner--bl" aria-hidden="true"></div>
+          <div class="tribute-film__corner tribute-film__corner--br" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         MEMORY WALL
+    ═══════════════════════════════════════ -->
+    <section class="memory-wall" id="memories" aria-label="Memory Wall">
+      <div class="memory-wall__texture" aria-hidden="true"></div>
+      <div class="container">
+        <div class="section-header reveal-fade-up">
+          <p class="section-eyebrow">Written With Love</p>
+          <h2 class="section-title">Memory<br><em>Wall</em></h2>
+          <p class="section-sub">Messages from those who cherish her most.</p>
+        </div>
+
+        <!--
+          MEMORY WALL: Add or replace messages as received.
+          Vary --rotate between -3deg and 3deg for natural scatter.
+          Increment --delay by 0.1s for each new card.
+          The grid auto-expands for any number of cards.
+        -->
+        <div class="memory-wall__grid" id="memoryWallGrid">
+
+          <!-- Chibuzor & Gideon — First Born -->
+          <div class="memory-card reveal-stagger" style="--rotate:-2deg; --delay:0.05s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              A beautiful birthday wish to a mum like no other — my enenebe eje olu, my oyooo,
+              a virtuous woman, one of the strongest women I know, the most beautiful,
+              God's love, my hype person, my friend and jist partner.
+              You've always been there for me and my siblings, and now for my family.
+              I love you, Mum. Happy 70th Birthday!
+            </p>
+            <p class="memory-card__author">— Chibuzor &amp; Gideon</p>
+          </div>
+
+          <!-- Chukwuka & Amaka — Third Born, First Son -->
+          <div class="memory-card reveal-stagger" style="--rotate:-1deg; --delay:0.15s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              You gave me more than life, Mum. You gave me a reason to live it well.
+              I watch my own children run to you, and I understand everything now —
+              you are what love looks like when it never, ever runs out.
+            </p>
+            <p class="memory-card__author">— Chukwuka &amp; Amaka</p>
+          </div>
+
+          <!-- Ijeoma & Obinna — Fourth Born -->
+          <div class="memory-card reveal-stagger" style="--rotate:2.5deg; --delay:0.20s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              When I close my eyes and think of safety, I think of you.
+              When I think of grace, I see your face.
+              You showed me God before the world could show me anything else —
+              and that is the greatest gift I will ever carry.
+            </p>
+            <p class="memory-card__author">— Ijeoma &amp; Obinna</p>
+          </div>
+
+          <!-- Uchenna & Cris — Fifth Born -->
+          <div class="memory-card reveal-stagger" style="--rotate:-0.5deg; --delay:0.25s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              You stitched this family together with your bare hands.
+              The thread you used was love — and it has never once come undone.
+              Seventy years old and you are still the strongest thing I know.
+            </p>
+            <p class="memory-card__author">— Uchenna &amp; Cris</p>
+          </div>
+
+          <!-- Nnamdi — Sixth Born -->
+          <div class="memory-card reveal-stagger" style="--rotate:1deg; --delay:0.30s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              You never ran out of us, Mum — even when we were too much.
+              You stretched yourself across ten lives and made each one feel
+              like it was your only one. That is not human.
+              That is something else entirely.
+            </p>
+            <p class="memory-card__author">— Nnamdi</p>
+          </div>
+
+          <!-- Chisom — Seventh Born -->
+          <div class="memory-card reveal-stagger" style="--rotate:-2.5deg; --delay:0.35s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              Mummy, you have always seen me — not just the version of me that had it together,
+              but the real me. You cried when I couldn't, you prayed when I was too weak to,
+              and you never once made me feel like I was too much. Seventy years of that love.
+              I am who I am because of you, and I will never stop being grateful.
+            </p>
+            <p class="memory-card__author">— Your Eby (Chisom)</p>
+          </div>
+
+          <!-- Nkechi — Eighth Born -->
+          <div class="memory-card reveal-stagger" style="--rotate:1.8deg; --delay:0.40s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              You are the loudest silence I know —
+              the love in the room before a single word is spoken.
+              I can be having the worst day, and just hearing your voice
+              makes the whole world make sense again.
+            </p>
+            <p class="memory-card__author">— Nkechi</p>
+          </div>
+
+          <!-- Nnaemeka — Ninth Born -->
+          <div class="memory-card reveal-stagger" style="--rotate:-1.2deg; --delay:0.45s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              You are my first prayer and my last thought before I sleep.
+              No matter where I go or how far I wander,
+              every version of home I have ever imagined has your face in it.
+            </p>
+            <p class="memory-card__author">— Nnaemeka</p>
+          </div>
+
+          <!-- Chisimdi — Tenth Born, Last Born -->
+          <div class="memory-card reveal-stagger" style="--rotate:2deg; --delay:0.50s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              Being the last of ten, and never once feeling like there was
+              less of you left for me — that is your miracle. That is who you are.
+              I love you with my whole life, Mummy.
+            </p>
+            <p class="memory-card__author">— Chisimdi</p>
+          </div>
+
+          <!-- Job Otutubuike — Brother -->
+          <div class="memory-card reveal-stagger" style="--rotate:-0.8deg; --delay:0.55s">
+            <div class="memory-card__pin" aria-hidden="true"></div>
+            <p class="memory-card__text">
+              Vicky, watching you love your children the way Papa loved us —
+              I know exactly where you learned it. The pen he placed in your hand
+              that day wasn't just for education. It was for writing a story
+              this family will never stop telling.
+            </p>
+            <p class="memory-card__author">— Job Otutubuike</p>
+          </div>
+
+        </div><!-- /.memory-wall__grid -->
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+         CELEBRATION COUNTDOWN
+    ═══════════════════════════════════════ -->
+    <section class="countdown" id="countdown" aria-label="Birthday Countdown">
+      <div class="countdown__ambient" aria-hidden="true"></div>
+      <div class="container">
+
+        <div class="section-header reveal-fade-up" id="countdownHeader">
+          <p class="section-eyebrow">The Big Day</p>
+          <h2 class="section-title">Counting Down<br><em>to 70</em></h2>
+        </div>
+
+        <!-- Timer (shown before birthday) -->
+        <div class="countdown__timer reveal-fade-up" id="countdownTimer"
+             role="timer" aria-live="polite" aria-label="Countdown to 70th birthday">
+          <div class="countdown__unit glass-card">
+            <span class="countdown__num" id="countDays">00</span>
+            <span class="countdown__label">Days</span>
+          </div>
+          <span class="countdown__sep" aria-hidden="true">:</span>
+          <div class="countdown__unit glass-card">
+            <span class="countdown__num" id="countHours">00</span>
+            <span class="countdown__label">Hours</span>
+          </div>
+          <span class="countdown__sep" aria-hidden="true">:</span>
+          <div class="countdown__unit glass-card">
+            <span class="countdown__num" id="countMinutes">00</span>
+            <span class="countdown__label">Minutes</span>
+          </div>
+          <span class="countdown__sep" aria-hidden="true">:</span>
+          <div class="countdown__unit glass-card">
+            <span class="countdown__num" id="countSeconds">00</span>
+            <span class="countdown__label">Seconds</span>
+          </div>
+        </div>
+
+        <!-- Celebration banner (shown on / after birthday) -->
+        <div class="countdown__celebration reveal-fade-up" id="countdownCelebration" hidden>
+          <div class="countdown__celebration-inner glass-card">
+            <p class="countdown__celebration-emoji" aria-hidden="true">🎉</p>
+            <h2 class="countdown__celebration-headline">She's 70!</h2>
+            <p class="countdown__celebration-sub">
+              Today we celebrate 70 beautiful years of love, wisdom, and grace.
+            </p>
+            <p class="countdown__celebration-emoji" aria-hidden="true">🎂</p>
+          </div>
+        </div>
+
+        <p class="countdown__date reveal-fade-up">
+          <span aria-label="Birthday date">May 24, 2026</span>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════ -->
+  <footer class="footer" id="footer" role="contentinfo">
+    <canvas class="footer__particles" id="footerParticles" aria-hidden="true"></canvas>
+    <div class="footer__gradient" aria-hidden="true"></div>
+
+    <div class="container footer__inner">
+
+      <!-- Gold divider SVG -->
+      <div class="footer__divider" aria-hidden="true">
+        <svg viewBox="0 0 300 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="10" x2="130" y2="10" stroke="url(#fg1)" stroke-width="1"/>
+          <circle cx="150" cy="10" r="5" fill="#C9A84C"/>
+          <circle cx="150" cy="10" r="3" fill="#E8D5A3"/>
+          <line x1="170" y1="10" x2="300" y2="10" stroke="url(#fg2)" stroke-width="1"/>
+          <defs>
+            <linearGradient id="fg1" x1="0" x2="130" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#C9A84C" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#C9A84C"/>
+            </linearGradient>
+            <linearGradient id="fg2" x1="170" x2="300" y1="0" y2="0" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#C9A84C"/>
+              <stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+
+      <div class="footer__message">
+        <p class="footer__headline">
+          Thank you for 70 years of love,<br>
+          wisdom, sacrifice, and beautiful memories.
+        </p>
+        <p class="footer__sub">We love you forever.</p>
+      </div>
+
+      <!-- Family Signatures -->
+      <div class="footer__signatures" aria-label="Family signatures">
+        <!--
+          SIGNATURES: Replace each [Child N] with the real name.
+          Add grandchildren and others below the 10 children.
+        -->
+        <span class="footer__sig">Chibuzor</span>
+        <span class="footer__sig">Ifeoma</span>
+        <span class="footer__sig">Chukwuka</span>
+        <span class="footer__sig">Ijeoma</span>
+        <span class="footer__sig">Uchenna</span>
+        <span class="footer__sig">Nnamdi</span>
+        <span class="footer__sig">Chisom</span>
+        <span class="footer__sig">Nkechi</span>
+        <span class="footer__sig">Nnaemeka</span>
+        <span class="footer__sig">Chisimdi</span>
+      </div>
+
+      <p class="footer__copy">
+        &copy; 2026 &nbsp;·&nbsp; With All Our Love &nbsp;·&nbsp;
+        Made for the Most Beautiful Soul
+      </p>
+
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       TRIBUTE FILM MODAL (full-screen cinematic slideshow)
+  ═══════════════════════════════════════ -->
+  <div class="tribute-film-modal" id="tributeFilmModal"
+       role="dialog" aria-modal="true"
+       aria-label="A Tribute in Motion — Full Screen"
+       tabindex="-1"
+       hidden>
+
+    <!-- Layer A (ping-pong crossfade) -->
+    <div class="tribute-film-modal__layer" id="tributeLayerA">
+      <div class="tribute-film-modal__blur-bg" id="tributeBlurA" aria-hidden="true"></div>
+      <img class="tribute-film-modal__img" id="tributeImgA"
+           src="" alt="" aria-hidden="true">
+    </div>
+    <!-- Layer B -->
+    <div class="tribute-film-modal__layer tribute-film-modal__layer--hidden" id="tributeLayerB">
+      <div class="tribute-film-modal__blur-bg" id="tributeBlurB" aria-hidden="true"></div>
+      <img class="tribute-film-modal__img" id="tributeImgB"
+           src="" alt="" aria-hidden="true">
+    </div>
+
+    <!-- Cinematic vignette overlay -->
+    <div class="tribute-film-modal__vignette" aria-hidden="true"></div>
+
+    <!-- Progress bar (very top) -->
+    <div class="tribute-film-modal__progress-track" aria-hidden="true">
+      <div class="tribute-film-modal__progress-fill" id="tributeProgressFill"></div>
+    </div>
+
+    <!-- Caption overlay (bottom-centre) -->
+    <div class="tribute-film-modal__caption-wrap">
+      <p class="tribute-film-modal__caption-main" id="tributeCaptionMain"
+         aria-live="polite"></p>
+      <p class="tribute-film-modal__caption-sub" id="tributeCaptionSub"></p>
+    </div>
+
+    <!-- Controls bar (bottom) -->
+    <div class="tribute-film-modal__controls" role="toolbar"
+         aria-label="Slideshow controls">
+      <!-- Prev -->
+      <button class="tribute-film-modal__ctrl" id="tributePrevBtn"
+              aria-label="Previous photograph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M15 18l-6-6 6-6"/>
+        </svg>
+      </button>
+      <!-- Play / Pause -->
+      <button class="tribute-film-modal__ctrl tribute-film-modal__ctrl--pp"
+              id="tributePlayPauseBtn"
+              aria-label="Pause slideshow" aria-pressed="true">
+        <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M6 4h4v16H6zM14 4h4v16h-4z"/>
+        </svg>
+        <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M8 5v14l11-7z"/>
+        </svg>
+      </button>
+      <!-- Next -->
+      <button class="tribute-film-modal__ctrl" id="tributeNextBtn"
+              aria-label="Next photograph">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M9 18l6-6-6-6"/>
+        </svg>
+      </button>
+      <!-- Mute / Unmute -->
+      <button class="tribute-film-modal__ctrl" id="tributeMuteBtn"
+              aria-label="Mute music" aria-pressed="false">
+        <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+        </svg>
+        <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <line x1="23" y1="9" x2="17" y2="15"/>
+          <line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+      </button>
+      <!-- Close -->
+      <button class="tribute-film-modal__ctrl tribute-film-modal__ctrl--close"
+              id="tributeCloseBtn" aria-label="Close slideshow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Slide counter (bottom-right) -->
+    <div class="tribute-film-modal__counter" aria-live="polite">
+      <span id="tributeCounterCur">1</span><span
+        class="tribute-film-modal__counter-sep">&ensp;/&ensp;</span><span
+        id="tributeCounterTotal">36</span>
+    </div>
+
+    <!-- Background music
+         DROP YOUR FILE INTO: assets/music/tribute.mp3
+         Recommended: "A Song for Mama" by Boyz II Men or any loving instrumental. -->
+    <audio id="tributeAudio" loop preload="none" aria-hidden="true">
+      <source src="assets/music/tribute.mp3" type="audio/mpeg">
+      <source src="assets/music/tribute.ogg" type="audio/ogg">
+    </audio>
+  </div>
+
+  <!-- JavaScript (load order matters) -->
+  <script src="js/animations.js" defer></script>
+  <script src="js/slider.js" defer></script>
+  <script src="js/main.js" defer></script>
+
+</body>
+</html>
