@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════
-   animations.js — Our Mother at 70
+   animations.js, Our Mother at 70
    IntersectionObserver scroll reveals · Parallax · Canvas particles
    3D card tilt · Timeline activation · Image error handlers
    ════════════════════════════════════════════════════════════ */

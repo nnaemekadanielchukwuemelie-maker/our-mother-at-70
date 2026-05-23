@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════
-   main.js — Our Mother at 70
+   main.js, Our Mother at 70
    Init · Countdown · Custom Cursor · Scroll Progress
    Navbar · Quote Rotator · Mobile Menu · 70 Reasons Grid
    ════════════════════════════════════════════════════════════ */
@@ -7,7 +7,7 @@
 'use strict';
 
 /* ═══════════════════════════════════════════════════════════
-   CONFIGURATION — Edit these values to customise the site
+   CONFIGURATION, Edit these values to customise the site
    ═══════════════════════════════════════════════════════════ */
 
 /** Birthday / event date (YYYY-MM-DD) */
@@ -17,108 +17,108 @@ const BIRTHDAY_DATE = '2026-05-24';
  * 70 Reasons We Love You
  * ─────────────────────
  * Replace each string with a real, personal reason.
- * Keep all 70 entries — the grid renders exactly this array.
+ * Keep all 70 entries, the grid renders exactly this array.
  */
 const REASONS = [
   /* 01 */ 'Because you woke before sunrise every single morning so your children could wake to warmth',
   /* 02 */ 'Because you quietly folded your own dreams away so ours could breathe and grow',
   /* 03 */ 'Because even when the cupboard was nearly empty, our table never once felt like poverty',
   /* 04 */ 'Because you prayed over each of us by name every morning before the world asked anything of you',
-  /* 05 */ 'Because you never made any of us feel like a burden — not even in the hardest seasons',
+  /* 05 */ 'Because you never made any of us feel like a burden, not even in the hardest seasons',
   /* 06 */ 'Because your laughter, loud and unashamed and full, has been the soundtrack of our whole childhood',
   /* 07 */ 'Because you looked at ten completely different children and loved each one as if they were your only one',
   /* 08 */ 'Because your embrace has always been the safest place on earth',
-  /* 09 */ 'Because you taught us to kneel before we walked — faith came before everything',
+  /* 09 */ 'Because you taught us to kneel before we walked, faith came before everything',
   /* 10 */ 'Because you stayed. Through every storm, every season, every difficulty. You always stayed.',
   /* 11 */ 'Because you understood our hearts better than we understood ourselves',
   /* 12 */ 'Because a gentle word of correction from you could accomplish what no one else\'s harshness could',
   /* 13 */ 'Because you sacrificed your comfort a thousand times without once asking for acknowledgement',
   /* 14 */ 'Because you never stopped believing in a child even when that child stopped believing in themselves',
-  /* 15 */ 'Because your kitchen was never just about food — it was the place where this family always healed',
+  /* 15 */ 'Because your kitchen was never just about food, it was the place where this family always healed',
   /* 16 */ 'Because when we were sick, your hands on our foreheads were better than any medicine',
   /* 17 */ 'Because you raised sons who know how to be tender and daughters who know how to be strong',
-  /* 18 */ 'Because you never competed with other mothers — you were simply, quietly, irreplaceable',
-  /* 19 */ 'Because you taught us that dignity is not something you earn — it is something you carry',
+  /* 18 */ 'Because you never competed with other mothers, you were simply, quietly, irreplaceable',
+  /* 19 */ 'Because you taught us that dignity is not something you earn, it is something you carry',
   /* 20 */ 'Because your silence could correct without ever humiliating',
   /* 21 */ 'Because you celebrated every result, every promotion, every tiny victory as though it were the greatest news in all the world',
   /* 22 */ 'Because no matter how far any of us travelled, home always carried the scent of you',
-  /* 23 */ 'Because you gave every grandchild the same eyes you gave us — full of unconditional delight',
+  /* 23 */ 'Because you gave every grandchild the same eyes you gave us, full of unconditional delight',
   /* 24 */ 'Because you never let a child leave your home hungry, whether they were yours by blood or simply by love',
   /* 25 */ 'Because you built peace in a house full of ten personalities, ten opinions, and ten very different needs',
   /* 26 */ 'Because you chose love on the days it was inconvenient, on the days it cost you, on every difficult ordinary day',
-  /* 27 */ 'Because your faith never wavered when ours did — you carried it quietly for the whole family',
-  /* 28 */ 'Because when our father needed a partner, you were exactly that — steady, devoted, and completely true',
-  /* 29 */ 'Because you taught us that tears are not weakness — they are proof that the heart is still working',
+  /* 27 */ 'Because your faith never wavered when ours did, you carried it quietly for the whole family',
+  /* 28 */ 'Because when our father needed a partner, you were exactly that, steady, devoted, and completely true',
+  /* 29 */ 'Because you taught us that tears are not weakness, they are proof that the heart is still working',
   /* 30 */ 'Because you made 1980 the beginning of something extraordinary simply by saying yes',
-  /* 31 */ 'Because ten children, one home, one mother — and somehow you made all of us feel like enough',
-  /* 32 */ 'Because you aged the way only truly joyful people do — with grace, never with grief',
+  /* 31 */ 'Because ten children, one home, one mother, and somehow you made all of us feel like enough',
+  /* 32 */ 'Because you aged the way only truly joyful people do, with grace, never with grief',
   /* 33 */ 'Because your hands, worn and gentle, tell the story of a life given entirely to others',
   /* 34 */ 'Because you have never once been jealous of the futures you spent everything building for us',
   /* 35 */ 'Because you forgave us for things we never even thought to apologise for',
   /* 36 */ 'Because our earliest memory of safety has your face in it',
   /* 37 */ 'Because you turned ordinary Sundays into something sacred and worth remembering',
   /* 38 */ 'Because even now at seventy, your eyes still carry that same warmth they always have',
-  /* 39 */ 'Because the grandchildren run to you exactly the way we did — that is not coincidence, that is character',
+  /* 39 */ 'Because the grandchildren run to you exactly the way we did, that is not coincidence, that is character',
   /* 40 */ 'Because you showed us what it looks like to love someone through every version of themselves',
   /* 41 */ 'Because your prayers have arrived before us to every place we have ever gone',
-  /* 42 */ 'Because you never compared us to each other — not once, not even quietly',
+  /* 42 */ 'Because you never compared us to each other, not once, not even quietly',
   /* 43 */ 'Because you are the reason this family has a language for love',
   /* 44 */ 'Because you gave Chibuzor a foundation, Ifeoma a voice, and Chukwuka courage they still carry',
   /* 45 */ 'Because you gave Ijeoma grace, Uchenna steadiness, and Nnamdi unbreakable strength',
   /* 46 */ 'Because you gave Chisom warmth, Nkechi brilliance, and Nnaemeka a wisdom beyond his years',
-  /* 47 */ 'Because you gave Chisimdi — your last — the fullness of everything you had left to give',
+  /* 47 */ 'Because you gave Chisimdi, your last, the fullness of everything you had left to give',
   /* 48 */ 'Because Shiloh, Blossom, Awesome, Paradise, and Zoe already know your love is something rare',
   /* 49 */ 'Because Chukwuekeka, Princess, Chukwuzikora, Angel, and Oluchi are living proof your love only multiplies',
-  /* 50 */ 'Because seventy years is not just a number — it is a testimony of endurance and grace',
+  /* 50 */ 'Because seventy years is not just a number, it is a testimony of endurance and grace',
   /* 51 */ 'Because you never let a birthday pass without making the person feel like the centre of the universe',
   /* 52 */ 'Because you prayed for our futures before we even knew who we wanted to become',
   /* 53 */ 'Because you are the kind of woman other women quietly look at and aspire to be',
-  /* 54 */ 'Because your name — Victoria — was never just a name, it was a prophecy you lived out in full',
+  /* 54 */ 'Because your name, Victoria, was never just a name, it was a prophecy you lived out in full',
   /* 55 */ 'Because you chose kindness as a daily discipline, not just an occasional mood',
   /* 56 */ 'Because you are the reason we understand what home truly means',
   /* 57 */ 'Because when we did not know how to love each other, we watched how you loved us and learned',
   /* 58 */ 'Because you held this family together during the seasons that should have broken it',
-  /* 59 */ 'Because your cooking is a love language that has no translation — it can only be tasted',
-  /* 60 */ 'Because you never made your sacrifice a weapon — you gave freely and kept on giving',
+  /* 59 */ 'Because your cooking is a love language that has no translation, it can only be tasted',
+  /* 60 */ 'Because you never made your sacrifice a weapon, you gave freely and kept on giving',
   /* 61 */ 'Because your voice reading scripture in the early morning is one of the holiest sounds we have ever heard',
   /* 62 */ 'Because you told us the truth even when a comfortable lie would have been easier for both of us',
   /* 63 */ 'Because you modelled a marriage that made all of us believe in love as something real and lasting',
   /* 64 */ 'Because your patience outlasted every difficult season any of us ever brought to your door',
   /* 65 */ 'Because you always had a gift for the person in the room who felt invisible',
-  /* 66 */ 'Because seventy years of your life have made this world measurably better — and that is rare',
-  /* 67 */ 'Because you made motherhood look like the highest calling — not a sacrifice, but a privilege',
-  /* 68 */ 'Because every one of your children carries a piece of your character — that is your true legacy',
+  /* 66 */ 'Because seventy years of your life have made this world measurably better, and that is rare',
+  /* 67 */ 'Because you made motherhood look like the highest calling, not a sacrifice, but a privilege',
+  /* 68 */ 'Because every one of your children carries a piece of your character, that is your true legacy',
   /* 69 */ 'Because the very best parts of all of us lead directly back to you',
-  /* 70 */ 'Because you are Victoria Offodimma Chukwuemelie — and there will never, ever be another one like you',
+  /* 70 */ 'Because you are Victoria Offodimma Chukwuemelie, and there will never, ever be another one like you',
 ];
 
 /**
- * Quote rotator content — rotating emotional quotes shown between sections.
+ * Quote rotator content, rotating emotional quotes shown between sections.
  * Customise with your own quotes or leave as is.
  */
 const QUOTES = [
   {
     text: 'A mother is she who can take the place of all others but whose place no one else can take.',
-    author: '— Cardinal Mermillod'
+    author: '- Cardinal Mermillod'
   },
   {
     text: 'The influence of a mother in the lives of her children is beyond calculation.',
-    author: '— James E. Faust'
+    author: '- James E. Faust'
   },
   {
     text: 'She is clothed in strength and dignity, and she laughs without fear of the future.',
-    author: '— Proverbs 31:25'
+    author: '- Proverbs 31:25'
   },
   {
     text: 'A mother\'s love is more beautiful than any fresh flower.',
-    author: '— Debasish Mridha'
+    author: '- Debasish Mridha'
   },
   {
     text: 'When everything else is uncertain, a mother\'s love remains the one constant.',
     author: ''
   },
   {
-    text: 'Seventy years of grace, sacrifice, and love. That is not a life — that is a legacy.',
+    text: 'Seventy years of grace, sacrifice, and love. That is not a life, that is a legacy.',
     author: ''
   },
 ];
@@ -223,7 +223,7 @@ function initScrollProgress() {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   STICKY NAVBAR — .scrolled class on scroll
+   STICKY NAVBAR, .scrolled class on scroll
    ═══════════════════════════════════════════════════════════ */
 function initNavbar() {
   const navbar    = document.getElementById('navbar');
@@ -445,7 +445,7 @@ function initSmoothScroll() {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   70 REASONS GRID — renders flip cards from the REASONS array
+   70 REASONS GRID, renders flip cards from the REASONS array
    ═══════════════════════════════════════════════════════════ */
 function initReasonsGrid() {
   const grid = document.getElementById('reasonsGrid');
@@ -609,7 +609,7 @@ function initReasonsGrid() {
 function initPhotoCollages() {
   // ── Grandchildren collage ──────────────────────────────────────
   // Reads avatar images from every grandchild tribute card.
-  // Add a new grandchild tribute card — the photo auto-appears here.
+  // Add a new grandchild tribute card, the photo auto-appears here.
   const gcWrap = document.querySelector('[data-collage="grandchildren"]');
   if (gcWrap) {
     const avatars = document.querySelectorAll('#grandchildrenGrid .tribute-card__avatar');
@@ -651,7 +651,7 @@ function initPhotoCollages() {
    when the API is unavailable (Firefox, Safari, etc.).
    ═══════════════════════════════════════════════════════════ */
 function initSmartFaceCrop() {
-  if (typeof FaceDetector === 'undefined') return; // API unavailable — CSS handles it
+  if (typeof FaceDetector === 'undefined') return; // API unavailable, CSS handles it
 
   let detector;
   try {
@@ -669,7 +669,7 @@ function initSmartFaceCrop() {
       if (!img.naturalWidth) return; // broken / not loaded
 
       const faces = await detector.detect(img);
-      if (!faces.length) return; // no face detected — keep CSS default
+      if (!faces.length) return; // no face detected, keep CSS default
 
       // Pick the largest (most prominent) face in the frame
       const { boundingBox: box } = faces.reduce((best, candidate) =>
@@ -689,7 +689,7 @@ function initSmartFaceCrop() {
 
       img.style.objectPosition = `${x}% ${y}%`;
     } catch (_) {
-      // FaceDetector.detect() rejected (CORS, security, etc.) — CSS default applies
+      // FaceDetector.detect() rejected (CORS, security, etc.), CSS default applies
     }
   }
 
@@ -870,7 +870,7 @@ function initTributeMarquee() {
         viewport.scrollLeft += (speed * direction * dt) / 1000;
       }
 
-      // Seamless wrap — we have two identical halves, so jumping by half is invisible
+      // Seamless wrap, we have two identical halves, so jumping by half is invisible
       if (halfWidth > 0) {
         if (viewport.scrollLeft >= halfWidth) {
           viewport.scrollLeft -= halfWidth;
@@ -886,7 +886,7 @@ function initTributeMarquee() {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   INIT — runs after DOM is ready
+   INIT, runs after DOM is ready
    ═══════════════════════════════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', () => {
   initReasonsGrid();     // build 70 reasons cards first (needed by scroll-reveal)

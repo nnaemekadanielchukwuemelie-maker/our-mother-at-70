@@ -1,7 +1,7 @@
 /* ════════════════════════════════════════════════════════════
-   style.css — Our Mother at 70
+   style.css, Our Mother at 70
    Design System · Base · Layout · All Sections
-   Palette: "Midnight Bloom" — deep purple + rose-gold + ivory
+   Palette: "Midnight Bloom", deep purple + rose-gold + ivory
    ════════════════════════════════════════════════════════════ */
 
 /* ─── 1. DESIGN TOKENS ────────────────────────────────────── */
@@ -282,7 +282,7 @@ blockquote {
   box-shadow: 0 0 8px rgba(201, 168, 76, 0.6);
 }
 
-/* Custom cursor — disabled */
+/* Custom cursor, disabled */
 .cursor-glow,
 .cursor-dot {
   display: none !important;
@@ -1007,7 +1007,7 @@ blockquote {
   background: var(--void);
 }
 
-/* Two images — equal side-by-side */
+/* Two images, equal side-by-side */
 .photo-collage--2 {
   grid-template-columns: 1fr 1fr;
 }
@@ -1015,7 +1015,7 @@ blockquote {
   height: 140px;
 }
 
-/* Three images — first spans full width, two below */
+/* Three images, first spans full width, two below */
 .photo-collage--3 {
   grid-template-columns: 1fr 1fr;
 }
@@ -1027,7 +1027,7 @@ blockquote {
   height: 110px;
 }
 
-/* Multi images — auto-fill (JS-populated, expands automatically) */
+/* Multi images, auto-fill (JS-populated, expands automatically) */
 .photo-collage--multi {
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
 }
@@ -1035,7 +1035,7 @@ blockquote {
   height: 88px;
 }
 
-/* 4 images — 2 × 2 symmetric grid */
+/* 4 images, 2 × 2 symmetric grid */
 .photo-collage--4 {
   grid-template-columns: 1fr 1fr;
 }
@@ -1054,7 +1054,7 @@ blockquote {
   transform: scale(1.06);
 }
 
-/* Per-image focal-point corrections — CSS fallback when FaceDetector unavailable */
+/* Per-image focal-point corrections, CSS fallback when FaceDetector unavailable */
 .photo-collage__img[src$="12.jpeg"] {
   object-position: 50% 35%; /* Ten Gifts from Heaven: faces lower in frame */
 }
@@ -1195,7 +1195,7 @@ blockquote {
   overflow-y: hidden;
   padding: var(--sp-8) 0 var(--sp-10);
   cursor: grab;
-  /* Hide native scrollbar — drag/wheel/touch still work */
+  /* Hide native scrollbar, drag/wheel/touch still work */
   scrollbar-width: none;
   -ms-overflow-style: none;
   /* Disable native horizontal touch panning conflict; we own the gesture */
@@ -1232,7 +1232,7 @@ blockquote {
   will-change: scroll-position;
 }
 
-/* Static variant: too few cards to loop convincingly — centre them, no auto-scroll */
+/* Static variant: too few cards to loop convincingly, centre them, no auto-scroll */
 .tributes__grid--marquee.tributes__grid--marquee-static {
   width: 100%;
   justify-content: center;
@@ -1271,7 +1271,7 @@ blockquote {
   height: 360px;
 }
 
-/* Soft golden aura behind every card — gently pulses */
+/* Soft golden aura behind every card, gently pulses */
 .tributes__grid--marquee .tribute-card::before {
   content: '';
   position: absolute;
@@ -1289,7 +1289,7 @@ blockquote {
   pointer-events: none;
 }
 
-/* Bottom gradient fade — hints at more content below */
+/* Bottom gradient fade, hints at more content below */
 .tributes__grid--marquee .tribute-card::after {
   content: '';
   position: absolute;
@@ -1339,7 +1339,7 @@ blockquote {
   background: transparent;
 }
 
-/* Quote text inside marquee cards — slightly larger & more readable */
+/* Quote text inside marquee cards, slightly larger & more readable */
 .tributes__grid--marquee .tribute-card__quote {
   font-size: 0.96rem;
   line-height: 1.78;
@@ -1361,7 +1361,7 @@ blockquote {
   border-top-color: rgba(201,168,76,0.22);
 }
 
-/* Cloned marquee duplicates are decorative only — hide from a11y tree */
+/* Cloned marquee duplicates are decorative only, hide from a11y tree */
 .tributes__grid--marquee .tribute-card[data-marquee-clone] {
   pointer-events: auto; /* still interactive so hover anywhere pauses */
 }
@@ -1376,7 +1376,7 @@ blockquote {
   100% { opacity: 0.75; transform: scale(1.04); }
 }
 
-/* Respect reduced-motion preference — keep cards visible but static */
+/* Respect reduced-motion preference, keep cards visible but static */
 @media (prefers-reduced-motion: reduce) {
   .tributes__grid--marquee {
     animation: none;
@@ -1391,7 +1391,7 @@ blockquote {
 
 /* ─── HEARTED QUOTE ────────────────────────────────────────
    A delicate border of tiny hearts surrounding a special
-   tribute message — square framed, top/bottom/left/right.
+   tribute message, square framed, top/bottom/left/right.
    Hearts are small, low-opacity, generously spaced so the
    effect reads as decorative trim, never tacky.            */
 .hearted-quote {
@@ -1446,7 +1446,7 @@ blockquote {
 .hearted-quote__side--right { right: 0.05rem; }
 .hearted-quote__side br { line-height: 0; }
 
-/* The hearted variant of the quote — drop the gold smart-quotes
+/* The hearted variant of the quote, drop the gold smart-quotes
    so the frame stays a clean square of hearts */
 .tribute-card__quote--hearted {
   margin-bottom: 0;
@@ -2143,7 +2143,7 @@ blockquote {
   opacity: 0;
   z-index: 0;
 }
-/* Blurred cinematic backdrop — same photo, blurred, fills the layer */
+/* Blurred cinematic backdrop, same photo, blurred, fills the layer */
 .tribute-film-modal__blur-bg {
   position: absolute;
   inset: -6%;          /* slightly larger to hide blur halo at edges */
@@ -2163,7 +2163,7 @@ blockquote {
 .tribute-film-modal__blur-bg.kb-5 { animation: kb-5 7.5s ease-in-out forwards; }
 .tribute-film-modal__blur-bg.kb-6 { animation: kb-6 7.5s ease-in-out forwards; }
 
-/* Foreground photo — always fully visible, no cropping */
+/* Foreground photo, always fully visible, no cropping */
 .tribute-film-modal__img {
   position: relative;
   width: 100%;

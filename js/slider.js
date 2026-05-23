@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════
-   slider.js — Our Mother at 70
+   slider.js, Our Mother at 70
    Gallery Lightbox · Lazy Image Loading · Video Modal
    ════════════════════════════════════════════════════════════ */
 
@@ -174,14 +174,14 @@ class Lightbox {
   }
 }
 
-/* ─── 3. TRIBUTE MUSIC — Local MP3 + YouTube backup + Web Audio piano ── */
-/* Tier 1: local MP3 (Dolly Parton — "Eagle When She Flies", the actual song) */
-/* Tier 2: YouTube IFrame embed of the same song (official VEVO) — used if mp3 missing/blocked */
-/* Tier 3: Web Audio synth "For You, Mummy" (C major, 66 BPM) — final fallback */
+/* ─── 3. TRIBUTE MUSIC, Local MP3 + YouTube backup + Web Audio piano ── */
+/* Tier 1: local MP3 (Dolly Parton, "Eagle When She Flies", the actual song) */
+/* Tier 2: YouTube IFrame embed of the same song (official VEVO), used if mp3 missing/blocked */
+/* Tier 3: Web Audio synth "For You, Mummy" (C major, 66 BPM), final fallback */
 
 const TRIBUTE_MUSIC_FILE =
   'assets/music/Dolly_Parton_-_Eagle_When_She_Flies256k.mp3';
-const TRIBUTE_YOUTUBE_ID = 'Mb1Rufxem_4'; // youtu.be/Mb1Rufxem_4 — DollyPartonVEVO official
+const TRIBUTE_YOUTUBE_ID = 'Mb1Rufxem_4'; // youtu.be/Mb1Rufxem_4, DollyPartonVEVO official
 
 /* Lazy-loads the YouTube IFrame Player API exactly once. */
 let _ytApiPromise = null;
@@ -208,6 +208,10 @@ class TributeMusic {
   constructor() {
     this._mode       = null;   // 'file' | 'youtube' | 'synth'
     this._audioEl    = null;   // HTMLAudioElement when mode=file
+    this._fileCtx    = null;   // AudioContext routing <audio> on iOS/Android
+    this._fileSrc    = null;   // MediaElementAudioSourceNode
+    this._fileGain   = null;   // GainNode in front of destination
+    this._unlockHandler = null;// one-shot pointer listener to resume on tap
     this._ytPlayer   = null;   // YT.Player instance when mode=youtube
     this._ytHost     = null;   // hidden <div> host element for the iframe
     this._ctx        = null;
@@ -263,15 +267,60 @@ class TributeMusic {
   async start() {
     if (this._isPlaying) return;
 
-    /* ── Tier 1: local MP3 (the actual song) ── */
+    /* ── Tier 1: local MP3 (the actual song) ──
+       Mobile notes:
+       • iPhone's side mute switch silences plain <audio> playback even at full
+         volume, routing through an AudioContext bypasses that behaviour.
+       • Android Chrome's autoplay heuristics are happier when playback starts
+         synchronously inside the user-gesture stack, so we do NOT await ctx
+         operations before el.play(). */
     try {
-      const el  = new Audio(TRIBUTE_MUSIC_FILE);
-      el.loop   = true;
-      el.volume = this._isMuted ? 0 : 0.85;
+      const el  = new Audio();
+      el.src         = TRIBUTE_MUSIC_FILE;
+      el.loop        = true;
+      el.preload     = 'auto';
+      el.playsInline = true;
+      el.setAttribute('playsinline', '');
+      el.setAttribute('webkit-playsinline', '');
+      el.volume      = this._isMuted ? 0 : 0.85;
+
+      let ctx = null, srcNode = null, gainNode = null;
+      try {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (AC) {
+          ctx = new AC();
+          srcNode  = ctx.createMediaElementSource(el);
+          gainNode = ctx.createGain();
+          gainNode.gain.value = this._isMuted ? 0 : 1.0;
+          srcNode.connect(gainNode).connect(ctx.destination);
+          if (ctx.state === 'suspended') {
+            // fire-and-forget, awaiting would break the gesture chain on iOS
+            ctx.resume().catch(() => {});
+          }
+        }
+      } catch (e) { /* MediaElementSource unsupported, plain <audio> still works */ }
+
       await el.play();          // rejects if file missing or autoplay blocked
-      this._audioEl   = el;
-      this._mode      = 'file';
-      this._isPlaying = true;
+      this._audioEl    = el;
+      this._fileCtx    = ctx;
+      this._fileSrc    = srcNode;
+      this._fileGain   = gainNode;
+      this._mode       = 'file';
+      this._isPlaying  = true;
+
+      // Belt-and-braces: if the browser pauses us shortly after (some mobile
+      // browsers do this when a modal animates in), retry on the next tap.
+      const retry = () => {
+        if (!this._audioEl) return;
+        if (this._fileCtx && this._fileCtx.state === 'suspended') {
+          this._fileCtx.resume().catch(() => {});
+        }
+        const p = this._audioEl.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {});
+      };
+      this._unlockHandler = retry;
+      document.addEventListener('touchend', retry, { once: true, passive: true });
+      document.addEventListener('click',    retry, { once: true });
       return;
     } catch (_) { /* fall through to YouTube */ }
 
@@ -311,7 +360,7 @@ class TributeMusic {
       this._isPlaying = true;
       return;
     } catch (_) {
-      /* network blocked, ad-blocker stripped the iframe, etc. — fall through */
+      /* network blocked, ad-blocker stripped the iframe, etc., fall through */
       if (this._ytHost && this._ytHost.parentNode) {
         this._ytHost.parentNode.removeChild(this._ytHost);
       }
@@ -345,10 +394,20 @@ class TributeMusic {
   stop() {
     this._isPlaying = false;
     clearInterval(this._loopTimer);
+    if (this._unlockHandler) {
+      document.removeEventListener('touchend', this._unlockHandler);
+      document.removeEventListener('click',    this._unlockHandler);
+      this._unlockHandler = null;
+    }
     if (this._audioEl) {
       this._audioEl.pause();
       this._audioEl.currentTime = 0;
       this._audioEl = null;
+    }
+    if (this._fileCtx) {
+      const fctx = this._fileCtx;
+      try { fctx.close(); } catch (e) {}
+      this._fileCtx = this._fileSrc = this._fileGain = null;
     }
     if (this._ytPlayer) {
       try { this._ytPlayer.stopVideo(); } catch (e) {}
@@ -476,15 +535,15 @@ class TributeMusic {
   }
 }
 
-/* ─── 4. TRIBUTE FILM — Cinematic Photo Slideshow ───────── */
+/* ─── 4. TRIBUTE FILM, Cinematic Photo Slideshow ───────── */
 /* Keyboard: ← → for prev/next · Space to play/pause · M to mute · Esc to close */
 
 const TRIBUTE_SLIDES = [
   { src: 'assets/images/1.jpeg',   cap: 'Victoria Offodimma Chukwuemelie', sub: 'Our Heart. Our Home.' },
-  { src: 'assets/images/a.jpeg',   cap: '1956 — Born in Gabon',            sub: 'With a pen in her hand' },
+  { src: 'assets/images/a.jpeg',   cap: '1956, Born in Gabon',            sub: 'With a pen in her hand' },
   { src: 'assets/images/30.png',   cap: 'A Daughter Like Papa',            sub: '' },
   { src: 'assets/images/31.jpg',   cap: 'Growing Up with Grace',           sub: '' },
-  { src: 'assets/images/10.jpeg',  cap: '1980 — The Covenant of Love',     sub: 'The day everything began' },
+  { src: 'assets/images/10.jpeg',  cap: '1980, The Covenant of Love',     sub: 'The day everything began' },
   { src: 'assets/images/15.jpg',   cap: 'A Woman of Extraordinary Love',   sub: '' },
   { src: 'assets/images/e.jpeg',   cap: 'Ten Gifts from Heaven',           sub: '' },
   { src: 'assets/images/8.jpeg',   cap: 'Her Beloved Family',              sub: '' },
@@ -564,7 +623,7 @@ class TributeFilm {
     document.body.style.overflow = 'hidden';
     this.modal.focus();
 
-    /* Create music engine — guarded so a failure never stops the slideshow */
+    /* Create music engine, guarded so a failure never stops the slideshow */
     try {
       this._music = new TributeMusic();
     } catch (e) {
@@ -604,7 +663,7 @@ class TributeFilm {
     this._applyKB(incomingImg, slide.src, kbClass);
 
     if (immediate) {
-      /* First load — no crossfade, just snap */
+      /* First load, no crossfade, just snap */
       incomingLayer.style.transition = 'none';
       incomingLayer.style.opacity    = '1';
       incomingLayer.style.zIndex     = '2';
@@ -651,7 +710,7 @@ class TributeFilm {
       blurEl.style.animation = '';
       blurEl.classList.add(kbClass);
     }
-    /* Foreground photo — swap src, stays fully visible (object-fit: contain) */
+    /* Foreground photo, swap src, stays fully visible (object-fit: contain) */
     imgEl.src = src;
   }
 

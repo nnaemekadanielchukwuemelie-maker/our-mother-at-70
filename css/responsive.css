@@ -1,7 +1,7 @@
 /* ════════════════════════════════════════════════════════════
-   responsive.css — Our Mother at 70
+   responsive.css, Our Mother at 70
    Breakpoints: 480px · 768px · 1024px · 1440px
-   Mobile-first adjustments — premium feel at every viewport
+   Mobile-first adjustments, premium feel at every viewport
    ════════════════════════════════════════════════════════════ */
 
 /* ─── 1. ULTRAWIDE (≥ 1440px) ─────────────────────────────── */
@@ -50,7 +50,7 @@
     --sp-24: 5rem;
   }
 
-  /* Navigation — show hamburger */
+  /* Navigation, show hamburger */
   .navbar__hamburger {
     display: flex;
   }
@@ -58,7 +58,7 @@
   /*
    * CRITICAL FIX: Remove backdrop-filter from the navbar on mobile.
    * When .navbar.scrolled has backdrop-filter active, CSS spec causes it to
-   * create a new containing block — which traps the position:fixed nav panel
+   * create a new containing block, which traps the position:fixed nav panel
    * inside the navbar's painted area (a thin strip), making it invisible.
    * A solid background achieves the same visual effect without the side-effect.
    */
@@ -84,13 +84,13 @@
     right: 0;
     bottom: 0;
     width: min(320px, 80vw);
-    /* Fully opaque — does NOT rely on backdrop-filter to provide background */
+    /* Fully opaque, does NOT rely on backdrop-filter to provide background */
     background: #0A0612;
     border-left: 1px solid rgba(201, 168, 76, 0.2);
     padding: 6rem var(--sp-8) var(--sp-8);
     transform: translateX(100%);
     transition: transform var(--dur-mid) var(--ease-out);
-    /* High z-index — well above any section stacking contexts */
+    /* High z-index, well above any section stacking contexts */
     z-index: 150;
     /* Force own compositing layer for smooth animation */
     will-change: transform;
@@ -115,7 +115,7 @@
     color: var(--champagne);
   }
 
-  /* Hero — stack on smaller screens */
+  /* Hero, stack on smaller screens */
   .hero__container {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
@@ -148,7 +148,7 @@
     right: calc(50% - 170px - 20px);
   }
 
-  /* Story — stack */
+  /* Story, stack */
   .story__container {
     grid-template-columns: 1fr;
     gap: var(--sp-12);
@@ -168,18 +168,18 @@
     left: -10px;
   }
 
-  /* Timeline — narrow gap */
+  /* Timeline, narrow gap */
   .timeline__item {
     grid-template-columns: 1fr 44px 1fr;
   }
 
-  /* Gallery — 3 columns */
+  /* Gallery, 3 columns */
   .gallery__grid {
     grid-template-columns: repeat(3, 1fr);
     grid-auto-rows: 180px;
   }
 
-  /* Reasons — more per row */
+  /* Reasons, more per row */
   .reasons__grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
@@ -241,7 +241,7 @@
     font-size: clamp(2rem, 7vw, 3rem);
   }
 
-  /* Timeline — single column */
+  /* Timeline, single column */
   .timeline__track {
     max-width: 100%;
   }
@@ -296,7 +296,7 @@
     width: 100%;
   }
 
-  /* Gallery — 2 columns */
+  /* Gallery, 2 columns */
   .gallery__grid {
     grid-template-columns: repeat(2, 1fr);
     grid-auto-rows: 160px;
@@ -317,7 +317,7 @@
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   }
 
-  /* Memory cards — neutralise rotation on small screens */
+  /* Memory cards, neutralise rotation on small screens */
   .memory-card {
     transform: rotate(0deg) !important;
   }
@@ -456,7 +456,7 @@
     font-size: clamp(1.8rem, 7vw, 2.5rem);
   }
 
-  /* Gallery — single column on very small screens */
+  /* Gallery, single column on very small screens */
   .gallery__grid {
     grid-template-columns: 1fr 1fr;
     grid-auto-rows: 140px;
@@ -468,7 +468,7 @@
     grid-row: span 1;
   }
 
-  /* Tribute cards — full width */
+  /* Tribute cards, full width */
   .tributes__grid,
   .tributes__grid--sm {
     grid-template-columns: 1fr;
@@ -479,7 +479,7 @@
     grid-template-columns: 1fr;
   }
 
-  /* Countdown — wrap to 2×2 */
+  /* Countdown, wrap to 2×2 */
   .countdown__timer {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -550,12 +550,12 @@
     max-width: 100%;
     max-height: 60vh;
   }
-  /* Tribute film stage — reduce aspect ratio on small screens */
+  /* Tribute film stage, reduce aspect ratio on small screens */
   .tribute-film__stage {
     aspect-ratio: 4/3;
   }
 
-  /* Tribute film controls — tighter */
+  /* Tribute film controls, tighter */
   .tribute-film-modal__controls {
     gap: var(--sp-2);
     padding-bottom: var(--sp-4);
@@ -563,7 +563,7 @@
   .tribute-film-modal__ctrl { width: 40px; height: 40px; }
   .tribute-film-modal__ctrl--pp { width: 48px; height: 48px; }
 
-  /* Counter — hide on very small screens */
+  /* Counter, hide on very small screens */
   .tribute-film-modal__counter { display: none; }
 }
 
@@ -606,13 +606,143 @@
     transform: none;
   }
 
-  /* Flip cards use tap (click) on touch — handled in main.js */
+  /* Flip cards use tap (click) on touch, handled in main.js */
 
   .lightbox__close,
   .lightbox__prev,
   .lightbox__next {
     width: 48px;
     height: 48px;
+  }
+}
+
+/* ─── 7b. HIDE HERO SCROLL CUE ON TOUCH / SMALL SCREENS ───
+   On phones and most tablets the stacked hero layout pushes
+   the "Scroll to Celebrate" indicator on top of the CTA
+   buttons. It is a desktop convention anyway, so hide it
+   anywhere we know we have a small viewport or touch input. */
+@media (max-width: 1024px), (pointer: coarse) {
+  .hero__scroll-indicator { display: none !important; }
+}
+
+/* ─── 7c. TRIBUTES, 2x2 STACK ON PHONE & TABLET ───────────
+   The horizontal marquee carousel is gorgeous on desktop,
+   but on small screens it cuts text off and feels cramped.
+   On phone and tablet we drop the auto-scroll, convert the
+   strip to a 2-column grid, hide the duplicated clones, and
+   put the avatar + name on a shared header row. Each card
+   keeps its internal scroll so long tributes still read in
+   full, exactly the way the desktop version does on hover. */
+@media (max-width: 768px) {
+  /* Strip becomes a regular grid */
+  .tributes__marquee {
+    overflow: visible;
+    padding: var(--sp-4) 0;
+    cursor: default;
+    touch-action: auto;
+    -webkit-mask-image: none;
+            mask-image: none;
+  }
+  .tributes__grid--marquee {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--sp-4);
+    width: 100% !important;
+    transform: none !important;
+  }
+  /* Clones inserted by the marquee JS, decorative only */
+  .tributes__grid--marquee [data-marquee-clone] {
+    display: none !important;
+  }
+
+  /* Each card: fixed friendly height with internal scroll for long messages */
+  .tributes__grid--marquee .tribute-card {
+    flex: unset;
+    width: auto;
+    height: 360px;
+    padding: var(--sp-4);
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "avatar  footer"
+      "quote   quote";
+    gap: var(--sp-2) var(--sp-3);
+    align-items: center;
+  }
+  /* Disable hover-lift on touch cards (already keep the aura) */
+  .tributes__grid--marquee .tribute-card:hover,
+  .tributes__grid--marquee .tribute-card:focus-within {
+    transform: none;
+    overflow: hidden;
+  }
+
+  /* Flatten the body wrapper so blockquote + footer become
+     direct grid items and can sit in their named slots. */
+  .tributes__grid--marquee .tribute-card .tribute-card__body {
+    display: contents;
+  }
+
+  /* Avatar pinned top-left */
+  .tributes__grid--marquee .tribute-card .tribute-card__avatar-wrap {
+    grid-area: avatar;
+    width: 56px;
+    height: 56px;
+    margin: 0;
+  }
+
+  /* Name + relation sit to the right of the avatar */
+  .tributes__grid--marquee .tribute-card .tribute-card__footer {
+    grid-area: footer;
+    border-top: none;
+    padding-top: 0;
+    margin: 0;
+    align-self: center;
+    text-align: left;
+  }
+  .tributes__grid--marquee .tribute-card .tribute-card__name {
+    font-size: 0.95rem;
+    line-height: 1.2;
+  }
+  .tributes__grid--marquee .tribute-card .tribute-card__relation {
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    margin-top: 2px;
+  }
+
+  /* The message itself fills the remaining space and scrolls inside */
+  .tributes__grid--marquee .tribute-card .tribute-card__quote {
+    grid-area: quote;
+    margin: 0;
+    padding-right: 4px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    line-height: 1.55;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(201,168,76,0.55) transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tributes__grid--marquee .tribute-card .tribute-card__quote::-webkit-scrollbar {
+    width: 4px;
+  }
+  .tributes__grid--marquee .tribute-card .tribute-card__quote::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, var(--gold), var(--rose-gold));
+    border-radius: 2px;
+  }
+
+  /* Drop the desktop-only bottom fade gradient and ambient aura tightening */
+  .tributes__grid--marquee .tribute-card::after { display: none; }
+  .tributes__grid--marquee .tribute-card::before { inset: -10px; filter: blur(14px); }
+}
+
+/* On very small phones, single-column reads more comfortably */
+@media (max-width: 420px) {
+  .tributes__grid--marquee {
+    grid-template-columns: 1fr;
+  }
+  .tributes__grid--marquee .tribute-card {
+    height: 340px;
   }
 }
 

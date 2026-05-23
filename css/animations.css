@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════
-   animations.css — Our Mother at 70
+   animations.css, Our Mother at 70
    Keyframes · Scroll-Reveal · Particle Effects · Pulse Glows
    ════════════════════════════════════════════════════════════ */
 
@@ -41,7 +41,7 @@
     transform 0.65s var(--ease-out) var(--delay, 0s);
 }
 
-/* Visible state — added by animations.js via IntersectionObserver */
+/* Visible state, added by animations.js via IntersectionObserver */
 .reveal-fade-up.visible,
 .reveal-fade-left.visible,
 .reveal-fade-right.visible,
@@ -209,7 +209,7 @@
 
 /* ─── 3. APPLIED ANIMATION CLASSES ───────────────────────── */
 
-/* Hero badge pop animation — triggered once on load */
+/* Hero badge pop animation, triggered once on load */
 .hero__portrait-badge {
   animation: badgePop 0.8s 1.4s var(--ease-spring) both;
 }
@@ -337,7 +337,7 @@
   to   { transform: scale(1.00) translate(-2%,    1%); }
 }
 
-/* Preview stage — continuous slow drift */
+/* Preview stage, continuous slow drift */
 @keyframes kb-stage {
   0%   { transform: scale(1.00) translate(  0%,  0%); }
   33%  { transform: scale(1.10) translate( -3%, -2%); }
