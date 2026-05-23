@@ -724,6 +724,15 @@ function initTributeMarquee() {
     window.matchMedia &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  // On tablet/mobile viewports the marquee is replaced by a static grid
+  // (2 cards/row on tablet, 1/row on phone). Skipping the JS here avoids:
+  //   • cloning cards (which would render duplicates inside the grid)
+  //   • setPointerCapture on the viewport, which steals touch events from
+  //     the quote blockquote and prevents internal scroll / card taps
+  const isSmallViewport =
+    window.matchMedia &&
+    window.matchMedia('(max-width: 1024px), (pointer: coarse)').matches;
+
   strips.forEach(strip => {
     // 1) Snapshot originals BEFORE cloning, otherwise we'd duplicate clones too.
     const originals = Array.from(strip.children);
@@ -736,6 +745,14 @@ function initTributeMarquee() {
       card.style.opacity = '1';
       card.style.transform = 'none';
     });
+
+    // Tablet / phone: stop here. The CSS turns the strip into a static grid;
+    // no clones, no pointer capture, no auto-scroll. Card internals (quote
+    // overflow, taps) work natively.
+    if (isSmallViewport) {
+      strip.classList.add('tributes__grid--marquee-static');
+      return;
+    }
 
     // If the strip has too few cards to fill the viewport, cloning would just
     // show the same card twice side-by-side (e.g. siblings has 1 card). In that

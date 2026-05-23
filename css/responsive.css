@@ -625,57 +625,66 @@
   .hero__scroll-indicator { display: none !important; }
 }
 
-/* ─── 7c. TRIBUTES, 2x2 STACK ON PHONE & TABLET ───────────
-   The horizontal marquee carousel is gorgeous on desktop,
-   but on small screens it cuts text off and feels cramped.
-   On phone and tablet we drop the auto-scroll, convert the
-   strip to a 2-column grid, hide the duplicated clones, and
-   put the avatar + name on a shared header row. Each card
-   keeps its internal scroll so long tributes still read in
-   full, exactly the way the desktop version does on hover. */
-@media (max-width: 768px) {
-  /* Strip becomes a regular grid */
+/* ─── 7c. TRIBUTES, STATIC GRID ON TABLET & PHONE ─────────
+   The horizontal drift marquee is gorgeous on desktop, but
+   on small screens it cuts text off, hijacks taps via pointer
+   capture, and feels cramped. On tablet (≤1024px) we switch
+   to a 2-column grid; on phone (≤480px) to a single column.
+   The marquee JS skips itself on these widths, so no clones,
+   no pointer-capture, no auto-scroll. Each card keeps its
+   internal scroll so long tributes still read in full.       */
+@media (max-width: 1024px) {
+  /* Strip becomes a static grid container */
   .tributes__marquee {
-    overflow: visible;
+    overflow: visible !important;
     padding: var(--sp-4) 0;
     cursor: default;
     touch-action: auto;
-    -webkit-mask-image: none;
-            mask-image: none;
+    -webkit-mask-image: none !important;
+            mask-image: none !important;
   }
   .tributes__grid--marquee {
     display: grid !important;
     grid-template-columns: 1fr 1fr;
-    gap: var(--sp-4);
+    gap: var(--sp-5);
     width: 100% !important;
+    max-width: 100% !important;
     transform: none !important;
+    animation: none !important;
+    flex-wrap: initial;
   }
-  /* Clones inserted by the marquee JS, decorative only */
+  /* Clones inserted by the marquee JS (defensive — JS now skips on mobile) */
   .tributes__grid--marquee [data-marquee-clone] {
     display: none !important;
   }
 
   /* Each card: fixed friendly height with internal scroll for long messages */
   .tributes__grid--marquee .tribute-card {
-    flex: unset;
-    width: auto;
-    height: 360px;
+    flex: unset !important;
+    width: auto !important;
+    max-width: 100%;
+    height: 380px;
+    margin: 0 !important;
     padding: var(--sp-4);
     overflow: hidden;
-    display: grid;
+    display: grid !important;
     grid-template-columns: 56px 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas:
-      "avatar  footer"
+      "avatar  header"
       "quote   quote";
-    gap: var(--sp-2) var(--sp-3);
+    column-gap: var(--sp-3);
+    row-gap: var(--sp-3);
     align-items: center;
+    isolation: isolate;
+    transform: none !important;
+    transition: none !important;
   }
-  /* Disable hover-lift on touch cards (already keep the aura) */
+  /* Disable hover-lift transforms (touch never resolves :hover anyway) */
   .tributes__grid--marquee .tribute-card:hover,
   .tributes__grid--marquee .tribute-card:focus-within {
-    transform: none;
-    overflow: hidden;
+    transform: none !important;
+    overflow: hidden !important;
   }
 
   /* Flatten the body wrapper so blockquote + footer become
@@ -684,26 +693,29 @@
     display: contents;
   }
 
-  /* Avatar pinned top-left */
+  /* Avatar pinned top-left of the card */
   .tributes__grid--marquee .tribute-card .tribute-card__avatar-wrap {
     grid-area: avatar;
     width: 56px;
     height: 56px;
     margin: 0;
+    align-self: center;
   }
 
-  /* Name + relation sit to the right of the avatar */
+  /* Name + relation sit on the same row as the avatar */
   .tributes__grid--marquee .tribute-card .tribute-card__footer {
-    grid-area: footer;
+    grid-area: header;
     border-top: none;
     padding-top: 0;
     margin: 0;
     align-self: center;
     text-align: left;
+    min-width: 0;
   }
   .tributes__grid--marquee .tribute-card .tribute-card__name {
     font-size: 0.95rem;
     line-height: 1.2;
+    margin: 0;
   }
   .tributes__grid--marquee .tribute-card .tribute-card__relation {
     font-size: 0.58rem;
@@ -711,17 +723,24 @@
     margin-top: 2px;
   }
 
-  /* The message itself fills the remaining space and scrolls inside */
+  /* The message itself fills the remaining space and scrolls within the card.
+     `min-height: 0` is essential — grid items default to min-height:auto, which
+     would let the blockquote push past the card and never trigger overflow. */
   .tributes__grid--marquee .tribute-card .tribute-card__quote {
     grid-area: quote;
     margin: 0;
-    padding-right: 4px;
+    padding: var(--sp-3) 6px 0 0;
+    border-top: 1px solid rgba(201,168,76,0.18);
+    min-height: 0;
+    min-width: 0;
     overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
     font-size: 0.85rem;
-    line-height: 1.55;
+    line-height: 1.6;
     scrollbar-width: thin;
     scrollbar-color: rgba(201,168,76,0.55) transparent;
-    -webkit-overflow-scrolling: touch;
   }
   .tributes__grid--marquee .tribute-card .tribute-card__quote::-webkit-scrollbar {
     width: 4px;
@@ -730,19 +749,32 @@
     background: linear-gradient(to bottom, var(--gold), var(--rose-gold));
     border-radius: 2px;
   }
+  .tributes__grid--marquee .tribute-card .tribute-card__quote::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-  /* Drop the desktop-only bottom fade gradient and ambient aura tightening */
-  .tributes__grid--marquee .tribute-card::after { display: none; }
-  .tributes__grid--marquee .tribute-card::before { inset: -10px; filter: blur(14px); }
+  /* Drop the desktop-only bottom-fade gradient that visually overlaps text,
+     and tighten the ambient aura on small cards */
+  .tributes__grid--marquee .tribute-card::after { display: none !important; }
+  .tributes__grid--marquee .tribute-card::before {
+    inset: -10px;
+    filter: blur(14px);
+    opacity: 0.4;
+  }
 }
 
-/* On very small phones, single-column reads more comfortably */
-@media (max-width: 420px) {
+/* On phones, single-column reads more comfortably */
+@media (max-width: 480px) {
   .tributes__grid--marquee {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr !important;
+    gap: var(--sp-4);
   }
   .tributes__grid--marquee .tribute-card {
-    height: 340px;
+    height: 360px;
+    padding: var(--sp-4) var(--sp-4);
+  }
+  .tributes__grid--marquee .tribute-card .tribute-card__quote {
+    font-size: 0.88rem;
   }
 }
 
