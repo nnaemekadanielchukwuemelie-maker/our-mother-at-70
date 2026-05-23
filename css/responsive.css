@@ -626,15 +626,19 @@
 }
 
 /* ─── 7c. TRIBUTES, STATIC GRID ON TABLET & PHONE ─────────
-   The horizontal drift marquee is gorgeous on desktop, but
-   on small screens it cuts text off, hijacks taps via pointer
-   capture, and feels cramped. On tablet (≤1024px) we switch
-   to a 2-column grid; on phone (≤480px) to a single column.
-   The marquee JS skips itself on these widths, so no clones,
-   no pointer-capture, no auto-scroll. Each card keeps its
-   internal scroll so long tributes still read in full.       */
+   Tablet (≤1024px) → 2 cards per row.
+   Phone  (≤480px ) → 1 card per row.
+   The marquee JS skips itself on these widths so taps and
+   vertical scrolling work natively inside each card.
+
+   Layout strategy (no `display: contents` — too flaky on some
+   mobile browsers): card is a flex-column box with the avatar
+   absolutely positioned in the top-left corner. The body is
+   flex-direction: column-reverse so the footer (name+relation)
+   visually appears ABOVE the quote, padded left to clear the
+   avatar. The quote fills remaining space and scrolls inside. */
 @media (max-width: 1024px) {
-  /* Strip becomes a static grid container */
+  /* Strip becomes a static grid container, kill all marquee styling */
   .tributes__marquee {
     overflow: visible !important;
     padding: var(--sp-4) 0;
@@ -653,64 +657,73 @@
     animation: none !important;
     flex-wrap: initial;
   }
-  /* Clones inserted by the marquee JS (defensive — JS now skips on mobile) */
+  /* Defensive: clones are hidden even if JS still ran (shouldn't on mobile) */
   .tributes__grid--marquee [data-marquee-clone] {
     display: none !important;
   }
 
-  /* Each card: fixed friendly height with internal scroll for long messages */
+  /* Each card: fixed height with internal scroll for long messages */
   .tributes__grid--marquee .tribute-card {
+    position: relative;
     flex: unset !important;
     width: auto !important;
     max-width: 100%;
     height: 380px;
     margin: 0 !important;
     padding: var(--sp-4);
-    overflow: hidden;
-    display: grid !important;
-    grid-template-columns: 56px 1fr;
-    grid-template-rows: auto 1fr;
-    grid-template-areas:
-      "avatar  header"
-      "quote   quote";
-    column-gap: var(--sp-3);
-    row-gap: var(--sp-3);
-    align-items: center;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0;
     isolation: isolate;
     transform: none !important;
     transition: none !important;
   }
-  /* Disable hover-lift transforms (touch never resolves :hover anyway) */
+  /* Disable hover-lift on touch (which never resolves :hover anyway) */
   .tributes__grid--marquee .tribute-card:hover,
   .tributes__grid--marquee .tribute-card:focus-within {
     transform: none !important;
     overflow: hidden !important;
+    box-shadow: var(--shadow-md);
   }
 
-  /* Flatten the body wrapper so blockquote + footer become
-     direct grid items and can sit in their named slots. */
-  .tributes__grid--marquee .tribute-card .tribute-card__body {
-    display: contents;
-  }
-
-  /* Avatar pinned top-left of the card */
+  /* Avatar pinned to the top-left corner, INSIDE the card padding */
   .tributes__grid--marquee .tribute-card .tribute-card__avatar-wrap {
-    grid-area: avatar;
-    width: 56px;
-    height: 56px;
+    position: absolute;
+    top: var(--sp-4);
+    left: var(--sp-4);
+    width: 52px;
+    height: 52px;
     margin: 0;
-    align-self: center;
+    z-index: 2;
   }
 
-  /* Name + relation sit on the same row as the avatar */
-  .tributes__grid--marquee .tribute-card .tribute-card__footer {
-    grid-area: header;
-    border-top: none;
-    padding-top: 0;
+  /* The body is the whole remaining card. Reverse its flex direction so
+     the footer (name + relation) renders FIRST (visually at top, beside
+     the avatar) and the quote renders AFTER (filling the rest, scrollable). */
+  .tributes__grid--marquee .tribute-card .tribute-card__body {
+    display: flex !important;
+    flex-direction: column-reverse !important;
+    flex: 1 1 auto;
+    min-height: 0;        /* critical — lets the quote shrink to enable scroll */
+    gap: var(--sp-3);
     margin: 0;
-    align-self: center;
+  }
+
+  /* Footer occupies the header strip, padded left to clear the absolute avatar.
+     Min-height matches the avatar so the row is balanced even with short names. */
+  .tributes__grid--marquee .tribute-card .tribute-card__footer {
+    flex: 0 0 auto;
+    min-height: 52px;
+    padding: 0 0 0 calc(52px + var(--sp-3));
+    margin: 0;
+    border-top: none;
+    border-bottom: 1px solid rgba(201,168,76,0.18);
+    padding-bottom: var(--sp-3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: left;
-    min-width: 0;
   }
   .tributes__grid--marquee .tribute-card .tribute-card__name {
     font-size: 0.95rem;
@@ -723,17 +736,16 @@
     margin-top: 2px;
   }
 
-  /* The message itself fills the remaining space and scrolls within the card.
-     `min-height: 0` is essential — grid items default to min-height:auto, which
-     would let the blockquote push past the card and never trigger overflow. */
+  /* The message fills the remaining space and scrolls within the card.
+     `min-height: 0` lets the flex item shrink below its content height,
+     which is what makes overflow-y: auto actually engage. */
   .tributes__grid--marquee .tribute-card .tribute-card__quote {
-    grid-area: quote;
-    margin: 0;
-    padding: var(--sp-3) 6px 0 0;
-    border-top: 1px solid rgba(201,168,76,0.18);
+    flex: 1 1 auto;
     min-height: 0;
     min-width: 0;
-    overflow-y: auto;
+    margin: 0;
+    padding: 0 6px 0 0;
+    overflow-y: auto !important;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
     touch-action: pan-y;
@@ -753,8 +765,8 @@
     background: transparent;
   }
 
-  /* Drop the desktop-only bottom-fade gradient that visually overlaps text,
-     and tighten the ambient aura on small cards */
+  /* Drop the desktop-only bottom-fade gradient (overlaps text on small cards)
+     and tighten the ambient aura */
   .tributes__grid--marquee .tribute-card::after { display: none !important; }
   .tributes__grid--marquee .tribute-card::before {
     inset: -10px;
@@ -763,7 +775,7 @@
   }
 }
 
-/* On phones, single-column reads more comfortably */
+/* Phones: 1 card per row */
 @media (max-width: 480px) {
   .tributes__grid--marquee {
     grid-template-columns: 1fr !important;
@@ -771,7 +783,6 @@
   }
   .tributes__grid--marquee .tribute-card {
     height: 360px;
-    padding: var(--sp-4) var(--sp-4);
   }
   .tributes__grid--marquee .tribute-card .tribute-card__quote {
     font-size: 0.88rem;
