@@ -875,46 +875,20 @@ function initTributeFilm() {
   new TributeFilm();
 }
 
-/* ─── 4. MEMORY WALL CAROUSEL (optional auto-scroll on mobile) */
+/* ─── 4. MEMORY WALL CAROUSEL ──────────────────────────────
+   Previously this auto-advanced every 3 s on mobile via
+   `scrollIntoView`, which had the side effect of scrolling
+   the WHOLE PAGE down to the Memory Wall section on load —
+   jarring visitors away from the hero before they'd even
+   started reading. The carousel container already scrolls
+   horizontally on touch (CSS overflow-x: auto), so we keep
+   that native swipe behaviour and remove the auto-advance
+   entirely. Visitors move through memories on their own. */
 function initMemoryCarousel() {
-  // Only activate on mobile viewports
-  if (window.innerWidth > 600) return;
-
-  const grid = document.getElementById('memoryWallGrid');
-  if (!grid) return;
-
-  const cards = Array.from(grid.querySelectorAll('.memory-card'));
-  if (cards.length < 2) return;
-
-  let current = 0;
-  let paused  = false;
-
-  cards.forEach((card, i) => {
-    card.addEventListener('mouseenter', () => { paused = true; });
-    card.addEventListener('mouseleave', () => { paused = false; });
-    card.addEventListener('touchstart',  () => { paused = true; }, { passive: true });
-  });
-
-  // Auto-scroll the grid container horizontally on mobile
-  // (CSS makes it scroll naturally; we just nudge it every few seconds)
-  const INTERVAL_MS = 3000;
-
-  function scroll() {
-    if (paused || !document.hasFocus()) return;
-    current = (current + 1) % cards.length;
-    cards[current].scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest',
-      inline: 'center'
-    });
-  }
-
-  const interval = setInterval(scroll, INTERVAL_MS);
-
-  // Pause when page is hidden
-  document.addEventListener('visibilitychange', () => {
-    paused = document.hidden;
-  });
+  // No-op: native horizontal swipe handles navigation.
+  // Kept as a named export so the DOMContentLoaded init list
+  // doesn't break if anything else references it.
+  return;
 }
 
 /* ─── INIT ───────────────────────────────────────────────── */
