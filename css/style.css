@@ -2586,3 +2586,156 @@ blockquote {
   text-transform: uppercase;
   color: rgba(240,230,211,0.25);
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   FROM HER BELOVED HUSBAND, A featured single-card tribute
+   placed above the Children, the most ornate card on the page.
+   ═══════════════════════════════════════════════════════════ */
+.tributes__group--featured {
+  margin-bottom: var(--sp-16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.tributes__group--featured .tributes__group-label {
+  font-size: 1.85rem;
+  color: var(--gold);
+  letter-spacing: 0.02em;
+}
+.tributes__group--featured .tributes__group-label::after {
+  width: 80px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0.9;
+  height: 2px;
+}
+
+/* The featured card itself */
+.tribute-card--featured {
+  position: relative;
+  isolation: isolate;
+  max-width: 640px;
+  width: 100%;
+  padding: var(--sp-12) var(--sp-10) var(--sp-9);
+  text-align: center;
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(201,168,76,0.45);
+  background:
+    radial-gradient(ellipse at top, rgba(196,154,108,0.18) 0%, transparent 60%),
+    linear-gradient(165deg, rgba(48,26,82,0.96) 0%, rgba(22,11,46,0.98) 100%);
+  box-shadow:
+    0 28px 70px rgba(0,0,0,0.55),
+    0 0 60px rgba(201,168,76,0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-6);
+}
+.tribute-card--featured::before {
+  content: '';
+  position: absolute;
+  inset: -28px;
+  z-index: -1;
+  border-radius: inherit;
+  background:
+    radial-gradient(ellipse at 50% 40%,
+      rgba(201,168,76,0.38) 0%,
+      rgba(196,154,108,0.22) 40%,
+      transparent 75%);
+  filter: blur(28px);
+  opacity: 0.75;
+  animation: tribute-aura 6.5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.tribute-card--featured::after {
+  content: '\2766';
+  position: absolute;
+  top: -0.95rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2.1rem;
+  height: 1.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--gold);
+  background: linear-gradient(165deg, rgba(48,26,82,1) 0%, rgba(22,11,46,1) 100%);
+  border: 1px solid rgba(201,168,76,0.55);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(201,168,76,0.45);
+  pointer-events: none;
+}
+
+.tribute-card--featured .tribute-card__avatar-wrap {
+  width: 124px;
+  height: 124px;
+  border: 2px solid rgba(201,168,76,0.55);
+  box-shadow:
+    0 0 0 5px rgba(201,168,76,0.10),
+    0 0 30px rgba(201,168,76,0.30),
+    0 12px 28px rgba(0,0,0,0.5);
+  margin-top: var(--sp-2);
+}
+.tribute-card--featured .tribute-card__body {
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+.tribute-card--featured .tribute-card__quote {
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--champagne);
+  max-width: 30rem;
+  margin: 0 auto var(--sp-6);
+  position: relative;
+  padding: 0 1.25rem;
+}
+.tribute-card--featured .tribute-card__quote::before,
+.tribute-card--featured .tribute-card__quote::after {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  line-height: 0;
+  color: var(--gold);
+  opacity: 0.7;
+  position: relative;
+  top: 0.55rem;
+  margin: 0 0.15rem;
+}
+.tribute-card--featured .tribute-card__footer {
+  border-top: 1px solid rgba(201,168,76,0.25);
+  padding-top: var(--sp-4);
+  width: 70%;
+  max-width: 22rem;
+  text-align: center;
+}
+.tribute-card--featured .tribute-card__name {
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  letter-spacing: 0.01em;
+}
+.tribute-card--featured .tribute-card__relation {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--rose-gold, var(--gold));
+  margin-top: var(--sp-2);
+}
+
+@media (max-width: 720px) {
+  .tribute-card--featured {
+    padding: var(--sp-10) var(--sp-6) var(--sp-7);
+  }
+  .tribute-card--featured .tribute-card__avatar-wrap {
+    width: 96px;
+    height: 96px;
+  }
+  .tributes__group--featured .tributes__group-label {
+    font-size: 1.5rem;
+  }
+}
