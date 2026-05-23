@@ -626,18 +626,16 @@
 }
 
 /* ─── 7c. TRIBUTES, STATIC GRID ON TABLET & PHONE ─────────
-   Tablet (≤1024px) → 2 cards per row.
-   Phone  (≤480px ) → 1 card per row.
-   The marquee JS skips itself on these widths so taps and
+   Tablet / iPad (≤1024px OR any touch device) → 2 cards per row.
+   Phone        (≤480px )                       → 1 card per row.
+   The marquee JS skips itself on these viewports so taps and
    vertical scrolling work natively inside each card.
 
-   Layout strategy (no `display: contents` — too flaky on some
-   mobile browsers): card is a flex-column box with the avatar
-   absolutely positioned in the top-left corner. The body is
-   flex-direction: column-reverse so the footer (name+relation)
-   visually appears ABOVE the quote, padded left to clear the
-   avatar. The quote fills remaining space and scrolls inside. */
-@media (max-width: 1024px) {
+   The combined media query `(max-width: 1024px), (hover: none)
+   and (pointer: coarse)` ensures iPad Pro 12.9" in landscape
+   (1366px wide, touch) still gets the static grid — not the
+   horizontal drift marquee.                                  */
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
   /* Strip becomes a static grid container, kill all marquee styling */
   .tributes__marquee {
     overflow: visible !important;
@@ -715,11 +713,10 @@
   .tributes__grid--marquee .tribute-card .tribute-card__footer {
     flex: 0 0 auto;
     min-height: 52px;
-    padding: 0 0 0 calc(52px + var(--sp-3));
+    padding: 0 0 var(--sp-3) calc(52px + var(--sp-3));
     margin: 0;
     border-top: none;
     border-bottom: 1px solid rgba(201,168,76,0.18);
-    padding-bottom: var(--sp-3);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -738,8 +735,13 @@
 
   /* The message fills the remaining space and scrolls within the card.
      `min-height: 0` lets the flex item shrink below its content height,
-     which is what makes overflow-y: auto actually engage. */
-  .tributes__grid--marquee .tribute-card .tribute-card__quote {
+     which is what makes overflow-y: auto actually engage.
+
+     We target BOTH the plain blockquote AND the `.hearted-quote` wrapper
+     (used by Blossom's card) so whichever one is the direct flex child
+     of __body becomes the scrollable region. */
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .tribute-card__quote,
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .hearted-quote {
     flex: 1 1 auto;
     min-height: 0;
     min-width: 0;
@@ -754,14 +756,42 @@
     scrollbar-width: thin;
     scrollbar-color: rgba(201,168,76,0.55) transparent;
   }
-  .tributes__grid--marquee .tribute-card .tribute-card__quote::-webkit-scrollbar {
+  /* Inside the hearted-quote wrapper, neutralise the inner flex:1 on the
+     blockquote so the wrapper (not the blockquote) is what scrolls. The
+     decorative side-hearts also need to span the full scrollable height. */
+  .tributes__grid--marquee .tribute-card .hearted-quote {
+    display: block !important;
+    padding: 0.6rem 1.2rem 0.6rem 1.2rem;
+    position: relative;
+  }
+  .tributes__grid--marquee .tribute-card .hearted-quote .tribute-card__quote--hearted {
+    flex: unset;
+    font-size: inherit;
+    line-height: inherit;
+    overflow: visible;
+    padding: 0;
+    margin: 0;
+  }
+  .tributes__grid--marquee .tribute-card .hearted-quote .hearted-quote__side {
+    /* Hide the heart columns on small cards — they crowd the narrow column
+       and the top/bottom heart rows already convey the decoration. */
+    display: none;
+  }
+  .tributes__grid--marquee .tribute-card .hearted-quote__title {
+    font-size: 0.95rem;
+  }
+
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .tribute-card__quote::-webkit-scrollbar,
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .hearted-quote::-webkit-scrollbar {
     width: 4px;
   }
-  .tributes__grid--marquee .tribute-card .tribute-card__quote::-webkit-scrollbar-thumb {
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .tribute-card__quote::-webkit-scrollbar-thumb,
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .hearted-quote::-webkit-scrollbar-thumb {
     background: linear-gradient(to bottom, var(--gold), var(--rose-gold));
     border-radius: 2px;
   }
-  .tributes__grid--marquee .tribute-card .tribute-card__quote::-webkit-scrollbar-track {
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .tribute-card__quote::-webkit-scrollbar-track,
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .hearted-quote::-webkit-scrollbar-track {
     background: transparent;
   }
 
@@ -784,7 +814,8 @@
   .tributes__grid--marquee .tribute-card {
     height: 360px;
   }
-  .tributes__grid--marquee .tribute-card .tribute-card__quote {
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .tribute-card__quote,
+  .tributes__grid--marquee .tribute-card .tribute-card__body > .hearted-quote {
     font-size: 0.88rem;
   }
 }
