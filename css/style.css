@@ -497,11 +497,13 @@ blockquote {
   line-height: 1.05;
   color: var(--ivory);
   margin-bottom: var(--sp-6);
+  text-wrap: balance;
 }
 .hero__headline em {
   font-style: italic;
   color: var(--gold-light);
   display: block;
+  text-wrap: balance;
 }
 .hero__sub {
   font-family: var(--font-body);
